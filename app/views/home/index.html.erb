@@ -1,0 +1,317 @@
+<header class="header">
+      <div class="header__container">
+        <div class="header__container__logo">
+          <a href="home.html"
+            ><img
+              class="header__container__logo__img"
+              src="images/logo.png"
+              alt="Logo"
+          /></a>
+        </div>
+
+        <form class="header__container__search">
+          <input
+            type="search"
+            name="text"
+            class="input--search"
+            placeholder="Поиск"
+          />
+        </form>
+
+        <nav class="header__container__nav">
+          <ul class="header__container__list">
+            <li class="header__container__list__item">
+              <a href="home.html"
+                ><img
+                  class="header__container__list__img"
+                  src="icons/home_active.svg"
+                  alt=""
+              /></a>
+            </li>
+            <li class="header__container__list__item">
+              <a href="new_post.html"
+                ><img
+                  class="header__container__list__img"
+                  src="icons/new_post.svg"
+                  alt=""
+              /></a>
+            </li>
+            <li class="header__container__list__item">
+              <a href=""
+                ><img
+                  class="header__container__list__img"
+                  src="icons/like.svg"
+                  alt=""
+              /></a>
+            </li>
+            <li class="header__container__list__item">
+              <a href="my_profile.html"
+                ><img
+                  class="header__container__list__userAvatar"
+                  src="images/user_avatar.jpg"
+                  alt=""
+              /></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="home__main">
+      <section class="home__main__leftColumn">
+        <div class="home__main__leftColumn_post">
+          <div class="home__main__leftColumn_post__header">
+            <div class="username-and-avatar">
+              <a href="">
+                <img
+                  class="avatar"
+                  src="images/user_avatar_2.jpg"
+                  alt="avatar"
+                />
+              </a>
+              <a href="" class="username"> balaklava_burger </a>
+            </div>
+            <a href="" class="home__main__leftColumn_post__header__dots">···</a>
+          </div>
+
+          <img
+            class="home__main__leftColumn_post__img"
+            src="images/user_avatar_2.jpg"
+            alt="image post"
+          />
+
+          <div class="home__main__leftColumn_post__icons">
+            <div class="home__main__leftColumn_post__icons__wrap">
+              <a href=""><img src="icons/like.svg" alt="like" /></a>
+              <a href=""><img src="icons/Comment.svg" alt="comment" /></a>
+              <a href=""><img src="icons/SharePosts.svg" alt="share" /></a>
+            </div>
+            <a href="">
+              <img src="icons/Save.svg" alt="save" />
+            </a>
+          </div>
+
+          <div class="home__main__leftColumn_post__likes">
+            1069 отметок "Нравится"
+          </div>
+
+          <div class="home__main__leftColumn_post__description">
+            <a href="">balaklava_burger</a>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, rem
+            beatae! Architecto, molestiae quod cum expedita totam officiis nulla
+            corrupti quidem iusto magni suscipit possimus, maxime, aliquid esse
+            itaque dolorem!
+          </div>
+
+          <div class="home__main__leftColumn_post__comments">
+            <div class="home__main__leftColumn_post__comments_item">
+              <a href="">kul1chik</a>
+              Найс пост!
+            </div>
+            <div class="home__main__leftColumn_post__comments_item">
+              <a href="">vados_stepanov</a>
+              Это просто шедевр!
+            </div>
+            <div class="home__main__leftColumn_post__comments_item">
+              <a href="">cdg_crimea</a>
+              Работайте в нашей компании за сто тыщ мильонов
+            </div>
+          </div>
+
+          <div class="home__main__leftColumn_post__date">2 ДНЕЙ НАЗАД</div>
+
+          <div class="home__main__leftColumn_post__addComment">
+            <img class="emoji" src="icons/Emoji.svg" alt="Emoji" />
+
+            <textarea
+              class="textarea"
+              name="comment"
+              rows="1"
+              placeholder="Добавьте комментарий..."
+            ></textarea>
+
+            <button class="submit--text" type="submit">Опубликовать</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="home__main__rightColumn">
+        <div class="home__main__rightColumn_sticky">
+          <div class="home__main__rightColumn__user">
+            <div class="home__main__rightColumn__user_wrap">
+              <a href="">
+                <img
+                  class="home__main__rightColumn__user__avatar"
+                  src="images/user_avatar.jpg"
+                  alt="user avatar"
+                />
+              </a>
+              <div class="home__main__rightColumn__user__name">
+                <a
+                  href=""
+                  class="home__main__rightColumn__user__name__textUser"
+                >
+                  kul1chik
+                </a>
+                <p class="home__main__rightColumn__user__name__textName">
+                  Андрей
+                </p>
+              </div>
+            </div>
+            <button class="submit--text user">Переключиться</button>
+          </div>
+
+          <div class="home__main__rightColumn__text">
+            <p class="home__main__rightColumn__text__p">Рекомендации для вас</p>
+            <a class="home__main__rightColumn__text__a" href="">Все</a>
+          </div>
+
+          <div class="home__main__rightColumn__recUser_container">
+            <div class="home__main__rightColumn__recUser">
+              <div class="home__main__rightColumn__recUser_wrap">
+                <a href="">
+                  <img
+                    class="home__main__rightColumn__recUser__avatar"
+                    src="images/user_avatar_2.jpg"
+                    alt="user avatar"
+                /></a>
+                <div class="home__main__rightColumn__recUser__name">
+                  <a
+                    href=""
+                    class="home__main__rightColumn__recUser__name__textUser"
+                  >
+                    balaklava_burger
+                  </a>
+                  <p class="home__main__rightColumn__recUser__name__textName">
+                    Бургеры || Севастополь
+                  </p>
+                </div>
+              </div>
+              <button class="submit--text user">Подписаться</button>
+            </div>
+            <div class="home__main__rightColumn__recUser">
+              <div class="home__main__rightColumn__recUser_wrap">
+                <a href="">
+                  <img
+                    class="home__main__rightColumn__recUser__avatar"
+                    src="images/user_avatar_2.jpg"
+                    alt="user avatar"
+                /></a>
+                <div class="home__main__rightColumn__recUser__name">
+                  <a
+                    href=""
+                    class="home__main__rightColumn__recUser__name__textUser"
+                  >
+                    balaklava_burger
+                  </a>
+                  <p class="home__main__rightColumn__recUser__name__textName">
+                    Бургеры || Севастополь
+                  </p>
+                </div>
+              </div>
+              <button class="submit--text user">Подписаться</button>
+            </div>
+            <div class="home__main__rightColumn__recUser">
+              <div class="home__main__rightColumn__recUser_wrap">
+                <a href="">
+                  <img
+                    class="home__main__rightColumn__recUser__avatar"
+                    src="images/user_avatar_2.jpg"
+                    alt="user avatar"
+                /></a>
+                <div class="home__main__rightColumn__recUser__name">
+                  <a
+                    href=""
+                    class="home__main__rightColumn__recUser__name__textUser"
+                  >
+                    balaklava_burger
+                  </a>
+                  <p class="home__main__rightColumn__recUser__name__textName">
+                    Бургеры || Севастополь
+                  </p>
+                </div>
+              </div>
+              <button class="submit--text user">Подписаться</button>
+            </div>
+            <div class="home__main__rightColumn__recUser">
+              <div class="home__main__rightColumn__recUser_wrap">
+                <a href="">
+                  <img
+                    class="home__main__rightColumn__recUser__avatar"
+                    src="images/user_avatar_2.jpg"
+                    alt="user avatar"
+                /></a>
+                <div class="home__main__rightColumn__recUser__name">
+                  <a
+                    href=""
+                    class="home__main__rightColumn__recUser__name__textUser"
+                  >
+                    balaklava_burger
+                  </a>
+                  <p class="home__main__rightColumn__recUser__name__textName">
+                    Бургеры || Севастополь
+                  </p>
+                </div>
+              </div>
+              <button class="submit--text user">Подписаться</button>
+            </div>
+            <div class="home__main__rightColumn__recUser">
+              <div class="home__main__rightColumn__recUser_wrap">
+                <a href="">
+                  <img
+                    class="home__main__rightColumn__recUser__avatar"
+                    src="images/user_avatar_2.jpg"
+                    alt="user avatar"
+                /></a>
+                <div class="home__main__rightColumn__recUser__name">
+                  <a
+                    href=""
+                    class="home__main__rightColumn__recUser__name__textUser"
+                  >
+                    balaklava_burger
+                  </a>
+                  <p class="home__main__rightColumn__recUser__name__textName">
+                    Бургеры || Севастополь
+                  </p>
+                </div>
+              </div>
+              <button class="submit--text user">Подписаться</button>
+            </div>
+          </div>
+
+          <ul class="home__main__rightColumn__links">
+            <li class="home__main__rightColumn__links__item">
+              <a href="">Информация</a>
+            </li>
+            <li class="home__main__rightColumn__links__item">
+              <a href="">Помощь</a>
+            </li>
+            <li class="home__main__rightColumn__links__item">
+              <a href="">Пресса</a>
+            </li>
+            <li class="home__main__rightColumn__links__item">
+              <a href="">API</a>
+            </li>
+            <li class="home__main__rightColumn__links__item">
+              <a href="">Вакансии</a>
+            </li>
+            <li class="home__main__rightColumn__links__item">
+              <a href="">Конфиденциальность</a>
+            </li>
+            <li class="home__main__rightColumn__links__item">
+              <a href="">Условия</a>
+            </li>
+            <li class="home__main__rightColumn__links__item">
+              <a href="">Места</a>
+            </li>
+            <li class="home__main__rightColumn__links__item">
+              <a href="">Язык</a>
+            </li>
+          </ul>
+
+          <p class="home__main__rightColumn__copy">
+            © 2022 COPY INSTAGRAM FROM KUL1CHIK
+          </p>
+        </div>
+      </section>
+    </main>

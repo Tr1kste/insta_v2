@@ -1,0 +1,251 @@
+@import url(authorization.css);
+@import url(home.css);
+@import url(normalize.css);
+@import url(new_post.css);
+@import url(profile.css);
+@import url(subs.css);
+
+@font-face {
+  font-family: "Segoe Ui";
+  src: url("font/Segoe UI.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background-color: #f9f9fd;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #727b7e;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.25) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.25) 75%,
+    transparent 75%,
+    transparent
+  );
+}
+
+a {
+  text-decoration: none;
+}
+
+.textarea {
+  resize: none;
+  font-size: 14px;
+  border: none;
+  width: 100%;
+
+  &.new-post {
+    font-size: 16px;
+    color: #262626;
+    background-color: transparent;
+    padding: 0 15px;
+  }
+}
+
+.input--email,
+.input--password,
+.input--text {
+  font-family: inherit;
+  height: 36px;
+  background: #fafafa;
+  color: #262626;
+  border: 1px solid #dbdbdb;
+  padding: 0 10px;
+
+  &:focus {
+    border: 1px solid #9d9d9d;
+  }
+}
+
+.input--search {
+  font-family: inherit;
+  font-weight: 100;
+  height: 36px;
+  width: 268px;
+  padding: 0 16px;
+  background: #efefef;
+  color: #262626;
+  border: none;
+  border-radius: 8px;
+
+  &:focus {
+    border: 1px solid #9d9d9d;
+  }
+}
+
+.input--submit {
+  margin-top: 10px;
+  font-family: inherit;
+  font-size: 16px;
+  height: 32px;
+  background: #0095f6;
+  border-radius: 5px;
+  padding: 6px 9px;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.input--file {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.submit--text {
+  cursor: pointer;
+  color: #0095f6;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+
+  &.user {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: #0095f6;
+  }
+
+  &.new-post {
+    border-top: 1px solid #dbdbdb;
+    text-align: right;
+    padding: 15px;
+  }
+
+  &.subs {
+    margin: 0 0 0 15px;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fafafa;
+  font-family: "Segoe Ui";
+  margin: 0;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #dbdbdb;
+  position: sticky;
+  top: 0;
+
+  .header__container {
+    max-width: 935px;
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .header__container__logo {
+      height: 22px;
+
+      .header__container__logo__img {
+        max-width: 103px;
+      }
+    }
+  }
+
+  .header__container__nav {
+    .header__container__list {
+      display: flex;
+      gap: 24px;
+
+      .header__container__list__item {
+        list-style-type: none;
+
+        .header__container__list__img,
+        .header__container__list__userAvatar {
+          width: 24px;
+          height: 24px;
+        }
+
+        .header__container__list__userAvatar {
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  margin-bottom: 40px;
+
+  .footer__list {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+
+    .footer__list__item {
+      list-style-type: none;
+
+      .footer__list__item__link {
+        font-size: 12px;
+        color: #8e8e8e;
+      }
+    }
+  }
+}
+
+.username-and-avatar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    margin: 2px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .username {
+    margin: 0;
+    color: #262626;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
