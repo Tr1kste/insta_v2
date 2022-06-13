@@ -1,0 +1,51 @@
+<main class="profile__main">
+    <section class="profile__header">
+        <div class="profile__header__avatar">
+            <%= image_tag('/images/user_avatar_2.jpg', class: "profile__header__avatar_img") %>
+        </div>
+
+        <div class="profile__header__info">
+            <div class="info__1st__line">
+                <h2 class="info__h2">kul1chik</h2>
+                <%= link_to "Редактировать профиль", edit_user_path(current_user), class: "info__linkEdit" %>
+                <%= link_to image_tag('/icons/edit.svg', class: "info__iconEdit"), edit_user_path(current_user) %>
+            </div>
+            <div class="info__2nd__line">
+                <p class="info__a"><span>9</span>публикаций</p>
+                <a href="subs.html" class="info__a"><span>21</span>подписчиков</a>
+                <a href="subs.html" class="info__a"><span>45</span>подписок</a>
+            </div>
+            <div class="info__3rd__line">
+                <p class="info__a bold">Андрей</p>
+                <p class="info__a desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Provident, explicabo nemo. Veritatis, minima praesentium officiis
+                    possimus illo voluptatem assumenda et, facilis ad vitae quae dolor
+                    eaque vero eveniet velit perspiciatis.
+                </p>
+                <a href="">example.com</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile__nav">
+        <div class="nav__wrap active">
+            <%= image_tag('/icons/posts.svg') %>
+            <a href="">Публикации</a>
+        </div>
+        <div class="nav__wrap">
+            <%= image_tag('/icons/Save.svg') %>
+            <a href="">Сохраненное</a>
+        </div>
+        <div class="nav__wrap">
+            <%= image_tag('/icons/Tagged.svg') %>
+            <a href="">Отметки</a>
+        </div>
+    </section>
+
+    <section class="profile__content">
+        <%= image_tag('/images/user_avatar_2.jpg') %>
+    </section>
+</main>
+
+<%= render "layouts/footer" %>
