@@ -1,33 +1,21 @@
 <header class="header">
   <div class="header__container">
     <div class="header__container__logo">
-      <a href="home.html">
-        <img
-          class="header__container__logo__img"
-          src="/images/logo.png"
-          alt="Logo"
-        />
+      <a href="<%= root_path %>">
+        <img class="header__container__logo__img" src="/images/logo.png" alt="Logo"/>
       </a>
     </div>
 
     <form class="header__container__search">
-      <input
-        type="search"
-        name="text"
-        class="input--search"
-        placeholder="Поиск"
-      />
+      <input type="search" name="text" class="input--search" placeholder="Поиск"/>
     </form>
 
     <nav class="header__container__nav">
       <ul class="header__container__list">
         <li class="header__container__list__item">
-          <a href="home.html"
-            ><img
-              class="header__container__list__img"
-              src="icons/home_active.svg"
-              alt=""
-          /></a>
+          <a href="<%= root_path %>">
+            <img class="header__container__list__img" src="icons/home_active.svg" alt="home" />
+          </a>
         </li>
         <li class="header__container__list__item">
           <a href="new_post.html"

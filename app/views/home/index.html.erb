@@ -90,7 +90,7 @@
             <p class="home__main__rightColumn__user__name__textName">Андрей</p>
           </div>
         </div>
-        <button class="submit--text user">Переключиться</button>
+        <%= link_to "Переключиться", destroy_user_session_path, method: :delete, class: "submit--text user" %>
       </div>
 
       <div class="home__main__rightColumn__text">

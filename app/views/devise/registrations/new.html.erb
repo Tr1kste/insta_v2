@@ -1,29 +1,46 @@
-<h2>Sign up</h2>
+<main class="auth__main__container">
+  <section class="auth__rightColumn">
+    <div class="auth__rightColumn__block">
+      <img
+        class="auth__rightColumn__block__logo"
+        src="/images/logo.png"
+        alt="logo"
+      />
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <h2 class="auth__rightColumn__block_h2">
+        Зарегистрируйтесь, чтобы смотреть фото и видео ваших друзей.
+      </h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="auth__rightColumn__block__form">
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input--email", placeholder: "Email"%>
+          <%= f.password_field :password, autocomplete: "new-password", class:"input--password", placeholder: "Пароль" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input--password", placeholder: "Подтверждение пароля" %>
+          <%= f.submit "Зарегистрироваться", class: "input--submit" %>
+          <!--<input
+            class="input--text"
+            type="text"
+            name="Name"
+            placeholder="Имя и фамилия"
+          />
+          <input
+            class="input--text"
+            type="text"
+            name="Username"
+            placeholder="Имя пользователя"
+          />-->
+        </div>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="auth__rightColumn__block__reg">
+      <p class="auth__rightColumn__block__reg__text">
+        Есть аккаунт?
+        <%= link_to "Вход", new_session_path(resource_name), class: "auth__rightColumn__block__reg__link" %>
+      </p>
+    </div>
+  </section>
+</main>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<%= render "layouts/footer" %>
