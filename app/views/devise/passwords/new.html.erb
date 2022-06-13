@@ -1,16 +1,33 @@
-<h2>Forgot your password?</h2>
+<main class="auth__main__container">
+  <section class="auth__rightColumn">
+    <div class="auth__rightColumn__block">
+      <img class="auth__rightColumn__block__logo" src="/images/logo.png" alt="logo" />
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <h2 class="auth__rightColumn__block_h2">
+        Забыли пароль? Восстановите через форму ниже
+      </h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <div class="auth__rightColumn__block__form">
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input--email", placeholder: "Email"%>
+          <%= f.submit "Reset password", class: "input--submit" %>
+        </div>
+      <% end %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="auth__rightColumn__block__reg">
+      <p class="auth__rightColumn__block__reg__text">
+        Есть аккаунт?
+        <%= link_to "Вход", new_session_path(resource_name), class: "auth__rightColumn__block__reg__link" %>
+      </p>
+      <p class="auth__rightColumn__block__reg__text">
+        У вас еще нет аккаунта?
+        <%= link_to "Зарегистрироваться", new_registration_path(resource_name), class: "auth__rightColumn__block__reg__link" %>
+      </p>
+    </div>
+  </section>
+</main>
+
+<%= render "layouts/footer" %>
