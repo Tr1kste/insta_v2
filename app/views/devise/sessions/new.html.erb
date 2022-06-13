@@ -1,9 +1,9 @@
 <main class="auth__main__container">
-  <img class="auth__leftColumn__img" src="/images/auth_insta.png" alt="display apple" />
+  <%= image_tag('/images/auth_insta.png', class: "auth__leftColumn__img") %>
 
   <section class="auth__rightColumn">
     <div class="auth__rightColumn__block">
-      <img class="auth__rightColumn__block__logo" src="/images/logo.png" alt="logo Instagram"/>
+      <%= image_tag('/images/logo.png', class: "auth__rightColumn__block__logo") %>
       
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="auth__rightColumn__block__form">

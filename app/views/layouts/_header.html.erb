@@ -37,14 +37,11 @@
           </li>
         <% end %>
 
-        <li class="header__container__list__item">
-          <a href="my_profile.html"
-            ><img
-              class="header__container__list__userAvatar"
-              src="images/user_avatar.jpg"
-              alt=""
-          /></a>
-        </li>
+        <% if user_signed_in? %>
+          <li class="header__container__list__item">
+            <%= link_to image_tag('/images/user_avatar.jpg', class: "header__container__list__userAvatar"), user_path(current_user) %>
+          </li>
+        <% end %>
       </ul>
     </nav>
   </div>
