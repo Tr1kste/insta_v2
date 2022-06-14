@@ -177,3 +177,135 @@
     }
   }
 }
+
+.profile__edit {
+  max-width: 935px;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  margin: 30px auto;
+  display: flex;
+  justify-content: flex-start;
+
+  .edit__nav {
+    border-right: 1px solid #dbdbdb;
+
+    .edit__menu {
+      display: flex;
+      flex-direction: column;
+      width: 255px;
+
+      .menu__item {
+        list-style-type: none;
+        padding: 16px 16px 16px 30px;
+        white-space: nowrap;
+
+        &.active {
+          border-left: 2px solid #262626;
+        }
+
+        .item__link {
+          color: #262626;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 20px;
+
+          &.active {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  .edit__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 30px;
+
+    .line__wrap {
+      width: 165px;
+      text-align: end;
+    }
+
+    .form__head {
+      display: flex;
+      align-items: center;
+      margin-top: 35px;
+      gap: 35px;
+
+      .head__avatar {
+        width: 38px;
+        height: 38px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .form__head__wrap {
+        display: flex;
+        flex-direction: column;
+
+        .head__name {
+          margin: 0;
+          font-size: 20px;
+          line-height: 22px;
+          margin-bottom: 2px;
+
+          &.solo {
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 38px;
+          }
+        }
+
+        .head__link {
+          color: #0095f6;
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .form__main {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .form__item {
+        display: flex;
+        gap: 35px;
+        align-items: center;
+
+        &.pad {
+          margin-top: 10px;
+        }
+
+        .label {
+          color: #262626;
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 18px;
+        }
+
+        .edit__describe {
+          width: 355px;
+          margin: 0;
+          color: #8e8e8e;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 16px;
+
+          span {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 18px;
+            margin-bottom: 3px;
+          }
+        }
+      }
+    }
+  }
+}

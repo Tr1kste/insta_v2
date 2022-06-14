@@ -59,6 +59,16 @@ a {
   }
 }
 
+.textarea--edit {
+  width: 355px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  resize: none;
+  font-size: 16px;
+  color: #262626;
+  padding: 0 10px;
+}
+
 .input--email,
 .input--password,
 .input--text {
@@ -71,6 +81,23 @@ a {
 
   &:focus {
     border: 1px solid #9d9d9d;
+  }
+
+  &.edit--form {
+    height: 32px;
+    background: #fff;
+    width: 355px;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+
+  &.change--pass {
+    height: auto;
+    width: 440px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 30px;
+    padding: 4px 12px;
   }
 }
 
@@ -91,8 +118,8 @@ a {
 }
 
 .input--submit {
-  font-family: inherit;
   margin-top: 10px;
+  font-family: inherit;
   font-size: 16px;
   height: 32px;
   background: #0095f6;
@@ -105,6 +132,12 @@ a {
   &:hover {
     cursor: pointer;
   }
+
+  &.edit--form {
+    font-size: 14px;
+    padding: 5px 9px;
+    height: 30px;
+  }
 }
 
 .input--file {
@@ -114,14 +147,14 @@ a {
 }
 
 .submit--text {
-  font-family: inherit;
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
   color: #0095f6;
   background-color: transparent;
   border: none;
   padding: 0;
-  font-size: 14px;
+  font-family: inherit;
   line-height: 18px;
 
   &.user {

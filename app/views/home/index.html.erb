@@ -85,9 +85,9 @@
           </a>
           <div class="home__main__rightColumn__user__name">
             <a href="" class="home__main__rightColumn__user__name__textUser">
-              kul1chik
+              <%= current_user.username %>
             </a>
-            <p class="home__main__rightColumn__user__name__textName">Андрей</p>
+            <p class="home__main__rightColumn__user__name__textName"><%= current_user.name %></p>
           </div>
         </div>
         <%= link_to "Переключиться", destroy_user_session_path, method: :delete, class: "submit--text user" %>

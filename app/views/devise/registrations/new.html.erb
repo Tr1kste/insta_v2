@@ -13,19 +13,11 @@
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input--email", placeholder: "Email"%>
           <%= f.password_field :password, autocomplete: "new-password", class:"input--password", placeholder: "Пароль" %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input--password", placeholder: "Подтверждение пароля" %>
+          <!--
+          <%= f.text_field :username, autocomplete: "username", class: "input--text", placeholder: "Ник пользователя"%>
+          <%= f.text_field :name, autocomplete: "name", class: "input--text", placeholder: "Имя и фамилия"%>
+          -->
           <%= f.submit "Зарегистрироваться", class: "input--submit" %>
-          <!--<input
-            class="input--text"
-            type="text"
-            name="Name"
-            placeholder="Имя и фамилия"
-          />
-          <input
-            class="input--text"
-            type="text"
-            name="Username"
-            placeholder="Имя пользователя"
-          />-->
         </div>
       <% end %>
     </div>

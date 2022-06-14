@@ -1,0 +1,84 @@
+<section class="edit__form">
+<%= form_with model: current_user, local: true do |f| %>
+    <div class="form__head">
+        <div class="line__wrap">
+        <img src="/images/user_avatar.jpg" class="head__avatar" />
+        </div>
+        <div class="form__head__wrap">
+        <p class="head__name"><%=current_user.username %></p>
+        <a href="" class="head__link">Изменить фото профиля</a>
+        </div>
+    </div>
+
+    <div class="form__main">
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :name, "Имя", class: 'label' %></div>
+            <%= f.text_field :name, class: 'input--text edit--form' %>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"></div>
+            <p class="edit__describe">
+                Чтобы людям было проще находить ваш аккаунт, используйте имя, под
+                которым вас знают: ваше имя и фамилию, никнейм или название
+                компании.
+                <br /><br />
+                Изменить имя можно не более двух раз в течение 14 дней.
+            </p>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :username, "Имя пользователя", class: 'label' %></div>
+            <%= f.text_field :username, class: 'input--text edit--form' %>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"></div>
+            <p class="edit__describe">
+                В большинстве случаев у вас будет ещё 14 дней, чтобы снова
+                изменить имя пользователя.
+            </p>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :website, "Веб-сайт", class: 'label' %></div>
+            <%= f.url_field :website, class: 'input--text edit--form' %>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :bio, "О себе", class: 'label' %></div>
+            <%= f.text_area :bio, size: "0x3", class: "textarea--edit" %>
+        </div>
+
+        <div class="form__item pad">
+            <div class="line__wrap"></div>
+            <p class="edit__describe">
+                <span>Личная информация</span><br />
+                Укажите личную информацию, даже если аккаунт будет использоваться
+                для компании, домашнего животного или в других целях. Эти сведения
+                не будут показываться в вашем общедоступном профиле.
+            </p>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :email, "Эл. адрес", class: 'label' %></div>
+            <%= f.email_field :email, class: 'input--text edit--form' %>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :phone, "Номер телефона", class: 'label' %></div>
+            <%= f.telephone_field :phone, class: 'input--text edit--form' %>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :gender, "Пол", class: 'label' %></div>
+            <%= f.text_field :gender, class: 'input--text edit--form' %>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"></div>
+            <%= f.submit "Отправить", class: 'input--submit edit--form' %>
+        </div>
+    </div>
+<% end %>
+</section>

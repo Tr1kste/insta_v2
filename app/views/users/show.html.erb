@@ -6,7 +6,7 @@
 
         <div class="profile__header__info">
             <div class="info__1st__line">
-                <h2 class="info__h2">kul1chik</h2>
+                <h2 class="info__h2"><%= current_user.username %></h2>
                 <%= link_to "Редактировать профиль", edit_user_path(current_user), class: "info__linkEdit" %>
                 <%= link_to image_tag('/icons/edit.svg', class: "info__iconEdit"), edit_user_path(current_user) %>
             </div>
@@ -16,14 +16,9 @@
                 <a href="subs.html" class="info__a"><span>45</span>подписок</a>
             </div>
             <div class="info__3rd__line">
-                <p class="info__a bold">Андрей</p>
-                <p class="info__a desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Provident, explicabo nemo. Veritatis, minima praesentium officiis
-                    possimus illo voluptatem assumenda et, facilis ad vitae quae dolor
-                    eaque vero eveniet velit perspiciatis.
-                </p>
-                <a href="">example.com</a>
+                <p class="info__a bold"><%= current_user.name %></p>
+                <p class="info__a desc"><%= current_user.bio %></p>
+                <a href="<%= current_user.website %>"><%= current_user.website %></a>
             </div>
         </div>
     </section>
