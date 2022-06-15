@@ -14,21 +14,17 @@
           <%= link_to image_tag('/icons/home_active.svg', class: "header__container__list__img"), root_path %>
         </li>
         <li class="header__container__list__item">
-          <%= link_to image_tag('/icons/new_post.svg', class: "header__container__list__img"), "new_post.html" %>
+          <%= link_to image_tag('/icons/new_post.svg', class: "header__container__list__img"), new_post_path %>
         </li>
         <li class="header__container__list__item">
           <%= link_to image_tag('/icons/like.svg', class: "header__container__list__img"), "like.html" %>
         </li>
-        <% if user_signed_in? %>
-          <li class="header__container__list__item">
-            <%= link_to image_tag('/icons/logout.svg', class: "header__container__list__img"), destroy_user_session_path, method: :delete %>
-          </li>
-        <% end %>
-        <% if user_signed_in? %>
-          <li class="header__container__list__item">
-            <%= link_to image_tag('/images/user_avatar.jpg', class: "header__container__list__userAvatar"), user_path(current_user) %>
-          </li>
-        <% end %>
+        <li class="header__container__list__item">
+          <%= link_to image_tag('/icons/logout.svg', class: "header__container__list__img"), destroy_user_session_path, method: :delete %>
+        </li>
+        <li class="header__container__list__item">
+          <%= link_to image_tag('/images/user_avatar.jpg', class: "header__container__list__userAvatar"), user_path(current_user) %>
+        </li>
       </ul>
     </nav>
   </div>
