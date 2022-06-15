@@ -2,7 +2,6 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  gap: 35px;
   max-width: 750px;
   margin: 45px auto;
   background-color: #fff;
@@ -26,6 +25,7 @@
       font-weight: 300;
       line-height: 26px;
       color: #262626;
+      text-align: center;
     }
   }
 

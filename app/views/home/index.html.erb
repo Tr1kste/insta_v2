@@ -1,21 +1,19 @@
 <main class="home__main">
+
   <section class="home__main__leftColumn">
-    <div class="home__main__leftColumn_post">
+    <% @posts.each do |post| %>
+        <div class="home__main__leftColumn_post">
       <div class="home__main__leftColumn_post__header">
         <div class="username-and-avatar">
           <a href="">
             <img class="avatar" src="images/user_avatar_2.jpg" alt="avatar" />
           </a>
-          <a href="" class="username"> balaklava_burger </a>
+          <a href="" class="username"><%= post.user.username %></a>
         </div>
         <a href="" class="home__main__leftColumn_post__header__dots">···</a>
       </div>
 
-      <img
-        class="home__main__leftColumn_post__img"
-        src="images/user_avatar_2.jpg"
-        alt="image post"
-      />
+      <%= image_tag post.image, class: 'home__main__leftColumn_post__img' %>
 
       <div class="home__main__leftColumn_post__icons">
         <div class="home__main__leftColumn_post__icons__wrap">
@@ -33,11 +31,8 @@
       </div>
 
       <div class="home__main__leftColumn_post__description">
-        <a href="">balaklava_burger</a>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, rem
-        beatae! Architecto, molestiae quod cum expedita totam officiis nulla
-        corrupti quidem iusto magni suscipit possimus, maxime, aliquid esse
-        itaque dolorem!
+        <a href=""><%= post.user.username %></a>
+        <%= post.description %>
       </div>
 
       <div class="home__main__leftColumn_post__comments">
@@ -70,6 +65,7 @@
         <button class="submit--text" type="submit">Опубликовать</button>
       </div>
     </div>
+    <% end %>
   </section>
 
   <section class="home__main__rightColumn">
