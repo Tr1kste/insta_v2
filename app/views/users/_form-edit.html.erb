@@ -2,11 +2,21 @@
 <%= form_with model: current_user, local: true do |f| %>
     <div class="form__head">
         <div class="line__wrap">
-        <img src="/images/user_avatar.jpg" class="head__avatar" />
+            <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar, class: "head__avatar" %>
+            <% else %>
+                <%= image_tag '/icons/profile.svg', class: "head__avatar" %>
+            <% end %>
         </div>
+
         <div class="form__head__wrap">
         <p class="head__name"><%=current_user.username %></p>
-        <a href="" class="head__link">Изменить фото профиля</a>
+        
+        <div class="newPost__leftColumn__fileInput">
+            <%= f.file_field :avatar, class: "input--file", id: "file_input" %>
+            <label class="input--file--label--line" for="file_input">Изменить фото профиля</label>
+        </div>
+
         </div>
     </div>
 

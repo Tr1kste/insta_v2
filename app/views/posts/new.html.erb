@@ -1,56 +1,40 @@
-<!--
-<%= form_for Post.new do |f| %>
-  <div class="form-group">
-    <%= f.text_field :description %>
-  </div>
-  <div class="form-group">
-    <%= f.file_field :image %>
-  </div>
-  <div class="form-group">
-    <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
-  </div>
-  <br>
-  <div class="text-center">
-    <%= f.submit 'Create Post', class: 'btn btn-primary' %>
-  </div>
-<% end %>
--->
+<main>
+    <%= form_for Post.new, :html => {:class => 'newPost__main__container'} do |f| %>
+        <div class="newPost__leftColumn">
+            <img class="newPost__leftColumn__img" src="/images/new_post.png" alt="display apple" />
+            <p class="newPost__leftColumn__p">Выберите фото</p>
 
-<main class="newPost__main__container">
-    <div class="newPost__leftColumn">
-        <%= form_for Post.new do |f| %>
-        <img class="newPost__leftColumn__img" src="/images/new_post.png" alt="display apple" />
-        <p class="newPost__leftColumn__p">Выберите фото</p>
-
-        <div class="newPost__leftColumn__fileInput">
-            <%= f.file_field :image, class: "input--file", id: "file_input" %>
-            <label class="input--file--label" for="file_input">
-                <svg aria-hidden="true"
-                    focusable="false"
-                    role="img"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512">
-                    <path
-                        fill="currentColor"
-                        d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z">
-                    </path>
-                </svg>
-                <span>Выбрать с компьютера</span>
-            </label>
+            <div class="newPost__leftColumn__fileInput">
+                <%= f.file_field :image, class: "input--file", id: "file_input" %>
+                <label class="input--file--label" for="file_input">
+                    <svg aria-hidden="true"
+                        focusable="false"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512">
+                        <path
+                            fill="currentColor"
+                            d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z">
+                        </path>
+                    </svg>
+                    <span>Выбрать с компьютера</span>
+                </label>
+            </div>
         </div>
-    </div>
 
-    <div class="newPost__rightColumn">
-        <div class="username-and-avatar space">
-            <a href="">
-                <img class="avatar" src="/images/user_avatar.jpg" alt="avatar" />
-            </a>
-            <a href="" class="username">kul1chik</a>
+        <div class="newPost__rightColumn">
+            <div class="username-and-avatar space">
+                <% if current_user.avatar.attached? %>
+                <%= link_to image_tag(current_user.avatar, class: "avatar"), user_path(current_user) %>
+                <% else %>
+                <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(current_user) %>
+                <% end %>
+                <a href="<%= user_path(current_user) %>" class="username"><%= current_user.username %></a>
+            </div>
+            <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
+            <%= f.text_area :description, class: "textarea new-post", rows: "10", placeholder: "Придумайте подпись..." %>
+            <%= f.submit 'Поделиться', class: 'submit--text new-post' %>
         </div>
-        <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
-        <%= f.text_area :description, class: "textarea new-post", rows: "10", placeholder: "Придумайте подпись..." %>
-        <%= f.submit 'Поделиться', class: 'submit--text new-post' %>
-    </div>
     <% end %>
 </main>
 

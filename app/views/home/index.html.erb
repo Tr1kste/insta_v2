@@ -2,69 +2,73 @@
 
   <section class="home__main__leftColumn">
     <% @posts.each do |post| %>
-        <div class="home__main__leftColumn_post">
-      <div class="home__main__leftColumn_post__header">
-        <div class="username-and-avatar">
+      <div class="home__main__leftColumn_post">
+        <div class="home__main__leftColumn_post__header">
+          <div class="username-and-avatar">
+
+            <% if post.user.avatar.attached? %>
+              <%= link_to image_tag(post.user.avatar, class: "avatar"), user_path(post.user) %>
+            <% else %>
+              <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(post.user) %>
+            <% end %>
+
+            <a href="<%= user_path(post.user) %>" class="username"><%= post.user.username %></a>
+          </div>
+          <a href="" class="home__main__leftColumn_post__header__dots">···</a>
+        </div>
+
+        <%= image_tag post.image, class: 'home__main__leftColumn_post__img' %>
+        
+        <div class="home__main__leftColumn_post__icons">
+          <div class="home__main__leftColumn_post__icons__wrap">
+            <a href=""><img src="icons/like.svg" alt="like" /></a>
+            <a href=""><img src="icons/Comment.svg" alt="comment" /></a>
+            <a href=""><img src="icons/SharePosts.svg" alt="share" /></a>
+          </div>
           <a href="">
-            <img class="avatar" src="images/user_avatar_2.jpg" alt="avatar" />
+            <img src="icons/Save.svg" alt="save" />
           </a>
-          <a href="" class="username"><%= post.user.username %></a>
         </div>
-        <a href="" class="home__main__leftColumn_post__header__dots">···</a>
-      </div>
 
-      <%= image_tag post.image, class: 'home__main__leftColumn_post__img' %>
-
-      <div class="home__main__leftColumn_post__icons">
-        <div class="home__main__leftColumn_post__icons__wrap">
-          <a href=""><img src="icons/like.svg" alt="like" /></a>
-          <a href=""><img src="icons/Comment.svg" alt="comment" /></a>
-          <a href=""><img src="icons/SharePosts.svg" alt="share" /></a>
+        <div class="home__main__leftColumn_post__likes">
+          1069 отметок "Нравится"
         </div>
-        <a href="">
-          <img src="icons/Save.svg" alt="save" />
-        </a>
-      </div>
 
-      <div class="home__main__leftColumn_post__likes">
-        1069 отметок "Нравится"
-      </div>
-
-      <div class="home__main__leftColumn_post__description">
-        <a href=""><%= post.user.username %></a>
-        <%= post.description %>
-      </div>
-
-      <div class="home__main__leftColumn_post__comments">
-        <div class="home__main__leftColumn_post__comments_item">
-          <a href="">kul1chik</a>
-          Найс пост!
+        <div class="home__main__leftColumn_post__description">
+          <%= link_to post.user.username, user_path(post.user) %>
+          <%= post.description %>
         </div>
-        <div class="home__main__leftColumn_post__comments_item">
-          <a href="">vados_stepanov</a>
-          Это просто шедевр!
+
+        <div class="home__main__leftColumn_post__comments">
+          <div class="home__main__leftColumn_post__comments_item">
+            <a href="">kul1chik</a>
+            Найс пост!
+          </div>
+          <div class="home__main__leftColumn_post__comments_item">
+            <a href="">vados_stepanov</a>
+            Это просто шедевр!
+          </div>
+          <div class="home__main__leftColumn_post__comments_item">
+            <a href="">cdg_crimea</a>
+            Работайте в нашей компании за сто тыщ мильонов
+          </div>
         </div>
-        <div class="home__main__leftColumn_post__comments_item">
-          <a href="">cdg_crimea</a>
-          Работайте в нашей компании за сто тыщ мильонов
+
+        <div class="home__main__leftColumn_post__date">2 ДНЕЙ НАЗАД</div>
+
+        <div class="home__main__leftColumn_post__addComment">
+          <img class="emoji" src="icons/Emoji.svg" alt="Emoji" />
+
+          <textarea
+            class="textarea"
+            name="comment"
+            rows="1"
+            placeholder="Добавьте комментарий..."
+          ></textarea>
+
+          <button class="submit--text" type="submit">Опубликовать</button>
         </div>
       </div>
-
-      <div class="home__main__leftColumn_post__date">2 ДНЕЙ НАЗАД</div>
-
-      <div class="home__main__leftColumn_post__addComment">
-        <img class="emoji" src="icons/Emoji.svg" alt="Emoji" />
-
-        <textarea
-          class="textarea"
-          name="comment"
-          rows="1"
-          placeholder="Добавьте комментарий..."
-        ></textarea>
-
-        <button class="submit--text" type="submit">Опубликовать</button>
-      </div>
-    </div>
     <% end %>
   </section>
 
@@ -72,17 +76,14 @@
     <div class="home__main__rightColumn_sticky">
       <div class="home__main__rightColumn__user">
         <div class="home__main__rightColumn__user_wrap">
-          <a href="">
-            <img
-              class="home__main__rightColumn__user__avatar"
-              src="images/user_avatar.jpg"
-              alt="user avatar"
-            />
-          </a>
+            <% if current_user.avatar.attached? %>
+              <%= link_to image_tag(current_user.avatar, class: "home__main__rightColumn__user__avatar"), user_path(current_user) %>
+            <% else %>
+              <%= link_to image_tag('/icons/profile.svg', class: "home__main__rightColumn__user__avatar"), user_path(current_user) %>
+            <% end %>
+
           <div class="home__main__rightColumn__user__name">
-            <a href="" class="home__main__rightColumn__user__name__textUser">
-              <%= current_user.username %>
-            </a>
+            <%= link_to current_user.username, user_path(current_user), class: "home__main__rightColumn__user__name__textUser" %>
             <p class="home__main__rightColumn__user__name__textName"><%= current_user.name %></p>
           </div>
         </div>

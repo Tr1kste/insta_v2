@@ -233,6 +233,11 @@ li {
         .header__container__list__userAvatar {
           object-fit: cover;
           border-radius: 50%;
+
+          &.no__avatar {
+            width: 27px;
+            height: 27px;
+          }
         }
       }
     }

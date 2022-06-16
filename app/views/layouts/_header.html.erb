@@ -1,7 +1,7 @@
 <header class="header">
   <div class="header__container">
     <div class="header__container__logo">
-      <%= link_to image_tag('/images/logo.png', class: "header__container__logo__img"), root_path %>
+      <%= link_to image_tag('/images/logo.png', class: "header__container__logo__img"), root_path %> 
     </div>
 
     <form class="header__container__search">
@@ -23,7 +23,11 @@
           <%= link_to image_tag('/icons/logout.svg', class: "header__container__list__img"), destroy_user_session_path, method: :delete %>
         </li>
         <li class="header__container__list__item">
-          <%= link_to image_tag('/images/user_avatar.jpg', class: "header__container__list__userAvatar"), user_path(current_user) %>
+          <% if current_user.avatar.attached? %>
+            <%= link_to image_tag(current_user.avatar, class: "header__container__list__userAvatar"), user_path(current_user) %>
+          <% else %>
+            <%= link_to image_tag('/icons/profile.svg', class: "header__container__list__userAvatar no__avatar"), user_path(current_user) %>
+          <% end %>
         </li>
       </ul>
     </nav>
