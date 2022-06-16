@@ -1,14 +1,10 @@
-class User < ApplicationRecord
-    has_many :posts, dependent: :destroy
-  end
-
 class Post < ApplicationRecord
     belongs_to :user
 
     has_one_attached :image
 
     validates :user_id, presence: true
-    validates :description, length: { minimum: 5, maximum: 300 }
+    validates :description, presence: true, length: { minimum: 5, maximum: 300 }
 
     validate :image_presence
     
