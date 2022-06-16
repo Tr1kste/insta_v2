@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+    before_action :set_user, only: %i[index]
+
     def index
-        @posts = Post.all
+        @posts = @user.posts.order(created_at: :desc)
     end
     
     def new
@@ -26,4 +28,7 @@ class PostsController < ApplicationController
         params.require(:post).permit(:description, :image, :user_id)
     end
 
+    def set_user
+        @user = User.find(params[id])
+    end
 end

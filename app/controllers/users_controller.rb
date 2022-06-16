@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
+    before_action :set_user, except: %i[index]
+
+    def index
+        @users = User.order(:name)
+    end
+
     def show
-        @posts = current_user.posts.order(created_at: :desc)
-        @user  = User.find(params[:id])
     end
 
     def edit
-        @user = User.find(params[:id])
     end
 
     def update
-        current_user.update(user_params)
+        @user.update(user_params)
         redirect_to current_user
     end
 
@@ -18,5 +21,9 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:username, :name, :website,
         :bio, :email, :phone, :gender, :avatar)
+    end
+
+    def set_user
+        @user = User.find(params[:id])
     end
 end
