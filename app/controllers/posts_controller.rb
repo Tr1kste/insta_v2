@@ -13,7 +13,9 @@ class PostsController < ApplicationController
     def create
         if @post = Post.create(post_params)
             redirect_to root_path
+            flash[:success] = "Your post has been created!"
         else
+            flash.now[:alert] = "Your new post couldn't be created! Please check the form."
             render :new
         end
     end

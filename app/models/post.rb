@@ -7,6 +7,9 @@ class Post < ApplicationRecord
 
     has_one_attached :image
 
+    validates :user_id, presence: true
+    validates :description, length: { minimum: 5, maximum: 300 }
+
     validate :image_presence
     
     def image_presence

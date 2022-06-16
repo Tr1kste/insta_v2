@@ -24,7 +24,9 @@
             <div class="info__3rd__line">
                 <p class="info__a bold"><%= @user.name %></p>
                 <p class="info__a desc"><%= @user.bio %></p>
-                <%= link_to @user.website, @user.website%>
+                <% if @user.website %>
+                    <%= link_to @user.website, @user.website%>
+                <% end %>
             </div>
         </div>
     </section>
@@ -45,7 +47,7 @@
     </section>
 
     <section class="profile__content">
-        <% @user.posts.each do |post|%>
+        <% @user.posts.order(created_at: :desc).each do |post|%>
             <%= image_tag post.image %>
         <% end %>
     </section>

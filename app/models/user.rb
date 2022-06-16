@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :avatar
+
+  validates :username, presence: true, length: { minimum: 4, maximum: 16 }
 end
