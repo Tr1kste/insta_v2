@@ -11,4 +11,8 @@ class Post < ApplicationRecord
     def image_presence
       errors.add(:image, "can't be blank") unless image.attached?
     end
+
+    def formatted_created_at
+      created_at.strftime('%d %b, %H:%M')
+    end
 end

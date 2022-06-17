@@ -5,7 +5,12 @@
     <div class="auth__rightColumn__block">
       <%= image_tag('/images/logo.png', class: "auth__rightColumn__block__logo") %>
       
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: [:log_in, :alert, alert_for(name)] %>
+      <% end %>
+
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        
         <div class="auth__rightColumn__block__form">
           
           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "input--email" %>

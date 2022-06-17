@@ -1,6 +1,11 @@
 <main class="home__main">
 
   <section class="home__main__leftColumn">
+    
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: [:home_message, :alert, alert_for(name)] %>
+    <% end %>
+    
     <% @posts.each do |post| %>
       <div class="home__main__leftColumn_post">
         <div class="home__main__leftColumn_post__header">
@@ -56,7 +61,11 @@
           </div>
         </div>
 
-        <div class="home__main__leftColumn_post__date">2 ДНЕЙ НАЗАД</div>
+        <div class="home__main__leftColumn_post__date">
+          <time datetime="<%= post.formatted_created_at %>">
+            <%= post.formatted_created_at %>
+          </time>
+        </div>
 
         <div class="home__main__leftColumn_post__addComment">
           <img class="emoji" src="icons/Emoji.svg" alt="Emoji" />
