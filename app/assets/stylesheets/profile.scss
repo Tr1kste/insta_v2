@@ -169,14 +169,38 @@
     align-items: center;
     gap: 2%;
 
-    img {
+    .post__wrap {
       width: 32%;
-      height: 295px;
+      height: 305px;
       margin: 0 0 25px 0;
-      object-fit: contain;
       background-color: #fff;
       border: 1px solid #dbdbdb;
       border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+
+      .post__image {
+        height: 270px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .post__icons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 15px;
+        max-height: 35px;
+
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
     }
   }
 }

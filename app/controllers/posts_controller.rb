@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_user, only: %i[index]
+    before_action :set_post, only: %i[show edit update destroy]
 
     def index
         @posts = @user.posts.order(created_at: :desc)
@@ -11,7 +12,6 @@ class PostsController < ApplicationController
     end
 
     def show
-        @post = Post.find(params[:id])
     end
 
     def create
@@ -26,6 +26,26 @@ class PostsController < ApplicationController
         end
     end
 
+    def edit
+    end
+
+    def update
+        @post.update(post_params)
+
+        if @post.update(post_params)
+          flash[:success] = "Post updated."
+          redirect_to post_path(@post)
+        else
+          flash.now[:alert] = "Update failed. Please check the form."
+          render :edit
+        end
+    end
+
+    def destroy
+        @post.destroy
+        redirect_to user_path(current_user)
+    end
+
     private
 
     def post_params
@@ -34,5 +54,9 @@ class PostsController < ApplicationController
 
     def set_user
         @user = User.find(params[id])
+    end
+
+    def set_post
+        @post = Post.find(params[:id])
     end
 end

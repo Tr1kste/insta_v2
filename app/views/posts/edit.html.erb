@@ -9,7 +9,7 @@
             <p class="newPost__leftColumn__p">Выберите фото</p>
 
             <div class="newPost__leftColumn__fileInput">
-                <%= f.file_field :image, class: "input--file", id: "file_input" %>
+                <%= f.file_field :image, value: @post.image, class: "input--file", id: "file_input" %>
                 <label class="input--file--label" for="file_input">
                     <svg aria-hidden="true"
                         focusable="false"
@@ -36,8 +36,8 @@
                 <%= link_to current_user.username, user_path(current_user), class: "username" %>
             </div>
             <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
-            <%= f.text_area :description, class: "textarea new-post", rows: "10", placeholder: "Придумайте подпись..." %>
-            <%= f.submit 'Поделиться', class: 'submit--text new-post' %>
+            <%= f.text_area :description, value: @post.description, class: "textarea new-post", rows: "10" %>
+            <%= f.submit 'Редактировать', class: 'submit--text new-post' %>
         </div>
     <% end %>
 </main>
