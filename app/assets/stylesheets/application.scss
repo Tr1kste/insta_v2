@@ -140,6 +140,14 @@ a {
     padding: 5px 9px;
     height: 30px;
   }
+
+  &.delete--button {
+    font-size: 14px;
+    padding: 7px 9px;
+    height: auto;
+    background: red;
+    margin-left: auto;
+  }
 }
 
 .input--file {
