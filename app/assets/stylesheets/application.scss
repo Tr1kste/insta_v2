@@ -320,13 +320,17 @@ li {
 }
 
 .field_with_errors {
-  border: 1px solid red;
+  .input--email,
+  .input--password,
+  .input--text {
+    border: 1px solid #cc3333;
+  }
 }
 
 #error_explanation {
   h2 {
     text-align: center;
-    color: red;
+    color: #cc3333;
     font-size: 20px;
     margin: 0 0 15px 0;
   }
