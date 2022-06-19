@@ -18,10 +18,10 @@ class PostsController < ApplicationController
         @post = current_user.posts.build(post_params)
 
         if @post.save
-            flash[:success] = "Your post has been created!"
+            flash[:success] = "Ваш пост опубликован!"
             redirect_to root_path
         else
-            flash.now[:alert] = "Your new post couldn't be created! Please check the form."
+            flash.now[:alert] = "Ваш новый пост не создан! Пожалуйста, проверьте форму."
             render :new
         end
     end
@@ -33,17 +33,24 @@ class PostsController < ApplicationController
         @post.update(post_params)
 
         if @post.update(post_params)
-          flash[:success] = "Post updated."
+          flash[:success] = "Пост обновлен."
           redirect_to post_path(@post)
         else
-          flash.now[:alert] = "Update failed. Please check the form."
+          flash.now[:alert] = "Ошибка обновления. Пожалуйста, проверьте форму."
           render :edit
         end
     end
 
     def destroy
         @post.destroy
-        redirect_to user_path(current_user)
+
+        if @post.destroy
+            flash[:success] = "Пост удален."
+            redirect_back fallback_location: root_path
+        else
+            flash.now[:alert] = "Ошибка удаления. Пожалуйста, попробуйте еще раз."
+            redirect_back fallback_location: root_path
+        end
     end
 
     private
