@@ -1,90 +1,16 @@
 <main class="home__main">
-
   <section class="home__main__leftColumn">
     
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: [:home_message, :alert, alert_for(name)] %>
     <% end %>
     
-    <% @posts.each do |post| %>
-      <div class="home__main__leftColumn_post">
-        <div class="home__main__leftColumn_post__header">
-          <div class="username-and-avatar">
-
-            <% if post.user.avatar.attached? %>
-              <%= link_to image_tag(post.user.avatar, class: "avatar"), user_path(post.user) %>
-            <% else %>
-              <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(post.user) %>
-            <% end %>
-
-            <a href="<%= user_path(post.user) %>" class="username"><%= post.user.username %></a>
-          </div>
-          <a href="" class="home__main__leftColumn_post__header__dots">···</a>
-        </div>
-
-        <%= image_tag post.image, class: 'home__main__leftColumn_post__img' %>
-        
-        <div class="home__main__leftColumn_post__icons">
-          <div class="home__main__leftColumn_post__icons__wrap">
-            <a href=""><img src="icons/like.svg" alt="like" /></a>
-            <a href=""><img src="icons/Comment.svg" alt="comment" /></a>
-            <a href=""><img src="icons/SharePosts.svg" alt="share" /></a>
-          </div>
-
-          <div class="home__main__leftColumn_post__icons__wrap">
-            <%= link_to image_tag('/icons/edit_post.svg'), edit_post_path(post)%>
-            <%= link_to image_tag('/icons/delete.svg'), post_path(post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" }%>
-          </div>
-        </div>
-
-        <div class="home__main__leftColumn_post__likes">
-          1069 отметок "Нравится"
-        </div>
-
-        <div class="home__main__leftColumn_post__description">
-          <%= link_to post.user.username, user_path(post.user) %>
-          <%= post.description %>
-        </div>
-
-        <div class="home__main__leftColumn_post__comments">
-          <div class="home__main__leftColumn_post__comments_item">
-            <a href="">kul1chik</a>
-            Найс пост!
-          </div>
-          <div class="home__main__leftColumn_post__comments_item">
-            <a href="">vados_stepanov</a>
-            Это просто шедевр!
-          </div>
-          <div class="home__main__leftColumn_post__comments_item">
-            <a href="">cdg_crimea</a>
-            Работайте в нашей компании за сто тыщ мильонов
-          </div>
-        </div>
-
-        <div class="home__main__leftColumn_post__date">
-          <time datetime="<%= post.formatted_created_at %>">
-            <%= post.formatted_created_at %>
-          </time>
-        </div>
-
-        <div class="home__main__leftColumn_post__addComment">
-          <img class="emoji" src="icons/Emoji.svg" alt="Emoji" />
-
-          <textarea
-            class="textarea"
-            name="comment"
-            rows="1"
-            placeholder="Добавьте комментарий..."
-          ></textarea>
-
-          <button class="submit--text" type="submit">Опубликовать</button>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'home/form_post' %>
   </section>
 
   <section class="home__main__rightColumn">
     <div class="home__main__rightColumn_sticky">
+
       <div class="home__main__rightColumn__user">
         <div class="home__main__rightColumn__user_wrap">
             <% if current_user.avatar.attached? %>
@@ -107,94 +33,7 @@
       </div>
 
       <div class="home__main__rightColumn__recUser_container">
-        <div class="home__main__rightColumn__recUser">
-          <div class="home__main__rightColumn__recUser_wrap">
-            <a href="">
-              <img
-                class="home__main__rightColumn__recUser__avatar"
-                src="images/user_avatar_2.jpg"
-                alt="user avatar"
-            /></a>
-            <div class="home__main__rightColumn__recUser__name">
-              <a
-                href=""
-                class="home__main__rightColumn__recUser__name__textUser"
-              >
-                balaklava_burger
-              </a>
-              <p class="home__main__rightColumn__recUser__name__textName">
-                Бургеры || Севастополь
-              </p>
-            </div>
-          </div>
-          <button class="submit--text user">Подписаться</button>
-        </div>
-        <div class="home__main__rightColumn__recUser">
-          <div class="home__main__rightColumn__recUser_wrap">
-            <a href="">
-              <img
-                class="home__main__rightColumn__recUser__avatar"
-                src="images/user_avatar_2.jpg"
-                alt="user avatar"
-            /></a>
-            <div class="home__main__rightColumn__recUser__name">
-              <a
-                href=""
-                class="home__main__rightColumn__recUser__name__textUser"
-              >
-                balaklava_burger
-              </a>
-              <p class="home__main__rightColumn__recUser__name__textName">
-                Бургеры || Севастополь
-              </p>
-            </div>
-          </div>
-          <button class="submit--text user">Подписаться</button>
-        </div>
-        <div class="home__main__rightColumn__recUser">
-          <div class="home__main__rightColumn__recUser_wrap">
-            <a href="">
-              <img
-                class="home__main__rightColumn__recUser__avatar"
-                src="images/user_avatar_2.jpg"
-                alt="user avatar"
-            /></a>
-            <div class="home__main__rightColumn__recUser__name">
-              <a
-                href=""
-                class="home__main__rightColumn__recUser__name__textUser"
-              >
-                balaklava_burger
-              </a>
-              <p class="home__main__rightColumn__recUser__name__textName">
-                Бургеры || Севастополь
-              </p>
-            </div>
-          </div>
-          <button class="submit--text user">Подписаться</button>
-        </div>
-        <div class="home__main__rightColumn__recUser">
-          <div class="home__main__rightColumn__recUser_wrap">
-            <a href="">
-              <img
-                class="home__main__rightColumn__recUser__avatar"
-                src="images/user_avatar_2.jpg"
-                alt="user avatar"
-            /></a>
-            <div class="home__main__rightColumn__recUser__name">
-              <a
-                href=""
-                class="home__main__rightColumn__recUser__name__textUser"
-              >
-                balaklava_burger
-              </a>
-              <p class="home__main__rightColumn__recUser__name__textName">
-                Бургеры || Севастополь
-              </p>
-            </div>
-          </div>
-          <button class="submit--text user">Подписаться</button>
-        </div>
+
         <div class="home__main__rightColumn__recUser">
           <div class="home__main__rightColumn__recUser_wrap">
             <a href="">
@@ -249,9 +88,7 @@
         </li>
       </ul>
 
-      <p class="home__main__rightColumn__copy">
-        © 2022 COPY INSTAGRAM FROM KUL1CHIK
-      </p>
+      <p class="home__main__rightColumn__copy">© 2022 COPY INSTAGRAM FROM KUL1CHIK</p>
     </div>
   </section>
 </main>

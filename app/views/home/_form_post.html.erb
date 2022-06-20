@@ -1,0 +1,59 @@
+<% @posts.each do |post| %>
+    <div class="home__main__leftColumn_post">
+        <div class="home__main__leftColumn_post__header">
+            <div class="username-and-avatar">
+                <% if post.user.avatar.attached? %>
+                    <%= link_to image_tag(post.user.avatar, class: "avatar"), user_path(post.user) %>
+                <% else %>
+                    <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(post.user) %>
+                <% end %>
+                <%= link_to post.user.username, user_path(post.user), class:"username" %>
+            </div>
+            <a href="" class="home__main__leftColumn_post__header__dots">···</a>
+        </div>
+
+        <%= image_tag post.image, class: 'home__main__leftColumn_post__img' %>
+
+        <div class="home__main__leftColumn_post__icons">
+            <div class="home__main__leftColumn_post__icons__wrap">
+                <a href=""><img src="icons/like.svg" alt="like" /></a>
+                <a href=""><img src="icons/Comment.svg" alt="comment" /></a>
+                <a href=""><img src="icons/SharePosts.svg" alt="share" /></a>
+            </div>
+
+            <div class="home__main__leftColumn_post__icons__wrap">
+                <%= link_to image_tag('/icons/edit_post.svg'), edit_post_path(post)%>
+                <%= link_to image_tag('/icons/delete.svg'), post_path(post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" }%>
+            </div>
+        </div>
+
+        <div class="home__main__leftColumn_post__likes">1069 отметок "Нравится"</div>
+
+        <div class="home__main__leftColumn_post__description">
+            <%= link_to post.user.username, user_path(post.user) %>
+            <%= post.description %>
+        </div>
+
+        <div class="home__main__leftColumn_post__comments">
+            <div class="home__main__leftColumn_post__comments_item">
+                <a href="">kul1chik</a>Найс пост!
+            </div>
+            <div class="home__main__leftColumn_post__comments_item">
+                <a href="">vados_stepanov</a>Это просто шедевр!
+            </div>
+            <div class="home__main__leftColumn_post__comments_item">
+                <a href="">cdg_crimea</a>Работайте в нашей компании за сто тыщ мильонов
+            </div>
+        </div>
+
+        <div class="home__main__leftColumn_post__date">
+            <time datetime="<%= post.formatted_created_at %>"><%= post.formatted_created_at %></time>
+        </div>
+
+        <div class="home__main__leftColumn_post__addComment">
+            <img class="emoji" src="icons/Emoji.svg" alt="Emoji" />
+            <textarea class="textarea" name="comment" rows="1" placeholder="Добавьте комментарий..."></textarea>
+            <button class="submit--text" type="submit">Опубликовать</button>
+        </div>
+    </div>
+<% end %>
