@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
         @comment = @post.comments.find(params[:id])
       
         @comment.destroy
-        flash[:success] = "Comment deleted :("
+        flash[:success] = "Комментарий удален"
         redirect_back fallback_location: root_path
     end
 

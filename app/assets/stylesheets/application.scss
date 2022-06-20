@@ -283,6 +283,34 @@ li {
 
   &.comment {
     margin-bottom: 10px;
+
+    .x__wrap {
+      display: flex;
+      flex-direction: column;
+
+      .y__wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      span {
+        font-size: 10px;
+        color: #8e8e8e;
+        padding-top: 5px;
+      }
+    }
+
+    .wrap__flex {
+      display: flex;
+      flex-direction: column;
+
+      span {
+        font-size: 10px;
+        color: #8e8e8e;
+        padding-top: 5px;
+      }
+    }
   }
 
   .avatar {
@@ -299,6 +327,14 @@ li {
     font-weight: 600;
     font-size: 14px;
     line-height: 18px;
+  }
+  .delete__wrap {
+    margin-left: auto;
+
+    .delete__img {
+      width: 10px;
+      height: 10px;
+    }
   }
 }
 

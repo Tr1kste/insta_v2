@@ -40,14 +40,26 @@
 
         <% @post.comments.each do |comment| %>
           <div class="username-and-avatar comment">
-            <% if comment.user.avatar.attached? %>
-              <%= link_to image_tag(comment.user.avatar, class: "avatar"), user_path(comment.user) %>
-            <% else %>
-              <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(comment.user) %>
-            <% end %>
 
-            <%= link_to comment.user.username, user_path(comment.user), class: "username" %>
-            <span><%= comment.content %></span>
+            <div class="x__wrap">
+              <div class="y__wrap">
+                <% if comment.user.avatar.attached? %>
+                  <%= link_to image_tag(comment.user.avatar, class: "avatar"), user_path(comment.user) %>
+                <% else %>
+                  <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(comment.user) %>
+                <% end %>
+
+                <%= link_to comment.user.username, user_path(comment.user), class: "username" %>
+              </div>
+              
+              <span><%= time_ago_in_words comment.created_at %></span>
+            </div>
+
+              <span><%= comment.content %></span>
+
+              <% if comment.user == current_user %>
+                <%= link_to image_tag('/icons/delete_comment.svg', class: "delete__img"), post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete__wrap' %>
+              <% end %>
           </div>
         <% end %>
       </div>

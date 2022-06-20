@@ -104,6 +104,16 @@
 
         .home__main__leftColumn_post__comments_item {
           padding: 10px 0 0 10px;
+          display: flex;
+
+          .delete__wrap {
+            margin-left: auto;
+
+            .delete__img {
+              width: 10px;
+              height: 10px;
+            }
+          }
         }
       }
 
