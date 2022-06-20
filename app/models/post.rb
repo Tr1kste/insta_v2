@@ -13,6 +13,6 @@ class Post < ApplicationRecord
     end
 
     def formatted_created_at
-      created_at.strftime('%d %b, %H:%M')
+      created_at.localtime.strftime('%d %b, %H:%M')
     end
 end

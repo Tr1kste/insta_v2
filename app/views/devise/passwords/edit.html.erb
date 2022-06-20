@@ -11,6 +11,7 @@
         <div class="auth__rightColumn__block__form">
           <%= render "devise/shared/error_messages", resource: resource %>
           <%= f.hidden_field :reset_password_token %>
+          <%= f.text_field :username, autocomplete: "username", class: "input--text", placeholder: "Ник пользователя"%>
           <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class:"input--password", placeholder: "Новый пароль" %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input--password", placeholder: "Подтверждение пароля" %>
           <%= f.submit "Изменить пароль", class: "input--submit" %>
