@@ -2,6 +2,7 @@ class PostsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_user, only: %i[index]
     before_action :set_post, only: %i[show edit update destroy]
+    before_action :owned_post, only: %i[edit update destroy]
 
     def index
         @posts = @user.posts.order(created_at: :desc)
@@ -65,5 +66,12 @@ class PostsController < ApplicationController
 
     def set_post
         @post = Post.find(params[:id])
+    end
+
+    def owned_post
+        unless current_user == @post.user
+            flash[:alert] = "Недостаточно прав для данного действия!"
+            redirect_back fallback_location: root_path
+        end
     end
 end
