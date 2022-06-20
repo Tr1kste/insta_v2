@@ -12,7 +12,9 @@
             <a href="" class="home__main__leftColumn_post__header__dots">···</a>
         </div>
 
-        <%= image_tag post.image, class: 'home__main__leftColumn_post__img' %>
+        <div class="home__main__leftColumn_post__img">
+            <%= link_to image_tag(post.image), post_path(post) %>
+        </div>
 
         <div class="home__main__leftColumn_post__icons">
             <div class="home__main__leftColumn_post__icons__wrap">

@@ -3,7 +3,7 @@
 @import url(authorization.css);
 @import url(home.css);
 @import url(normalize.css);
-@import url(new_post.css);
+@import url(posts.css);
 @import url(profile.css);
 @import url(subs.css);
 
@@ -57,6 +57,10 @@ a {
     background-color: transparent;
     padding: 0 15px;
     margin-bottom: 30px;
+  }
+
+  &.post {
+    font-size: 12px;
   }
 }
 
