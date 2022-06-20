@@ -39,25 +39,23 @@
         </div>
 
         <div class="home__main__leftColumn_post__comments">
-            <div class="home__main__leftColumn_post__comments_item">
-                <a href="">kul1chik</a><span>Найс пост!</span>
-            </div>
-            <div class="home__main__leftColumn_post__comments_item">
-                <a href="">vados_stepanov</a><span>Это просто шедевр!</span>
-            </div>
-            <div class="home__main__leftColumn_post__comments_item">
-                <a href="">cdg_crimea</a><span>Работайте в нашей компании за сто тыщ мильонов</span>
-            </div>
+            <% post.comments.each do |comment| %>
+                <div class="home__main__leftColumn_post__comments_item">
+                    <%= link_to comment.user.username, user_path(comment.user)%>
+                    <span><%= comment.content %></span>
+                </div>
+            <% end %>
         </div>
-
+        
         <div class="home__main__leftColumn_post__date">
             <time datetime="<%= post.formatted_created_at %>"><%= post.formatted_created_at %></time>
         </div>
 
-        <div class="home__main__leftColumn_post__addComment">
+        <%= form_for [post, post.comments.new], :html => {:class => 'home__main__leftColumn_post__addComment'} do |f| %>
             <img class="emoji" src="icons/Emoji.svg" alt="Emoji" />
-            <textarea class="textarea" name="comment" rows="1" placeholder="Добавьте комментарий..."></textarea>
-            <button class="submit--text" type="submit">Опубликовать</button>
-        </div>
+            <%= f.text_area :content, class: 'textarea', rows: "1", placeholder: "Добавьте комментарий..." %>
+            <%= f.submit "Опубликовать", class: 'submit--text' %>
+      <% end %>
+      
     </div>
 <% end %>

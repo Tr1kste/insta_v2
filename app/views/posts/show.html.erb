@@ -28,7 +28,7 @@
       </div>
 
       <div class="data__comments">
-        <div class="username-and-avatar">
+        <div class="username-and-avatar comment">
           <% if @post.user.avatar.attached? %>
             <%= link_to image_tag(@post.user.avatar, class: "avatar"), user_path(@post.user) %>
           <% else %>
@@ -38,15 +38,18 @@
           <span><%= @post.description %></span>
         </div>
 
-        <div class="username-and-avatar">
-          <% if @post.user.avatar.attached? %>
-            <%= link_to image_tag(@post.user.avatar, class: "avatar"), user_path(@post.user) %>
-          <% else %>
-            <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(@post.user) %>
-          <% end %>
-          <%= link_to @post.user.username, user_path(@post.user), class: "username" %>
-          <span><%= @post.description %></span>
-        </div>
+        <% @post.comments.each do |comment| %>
+          <div class="username-and-avatar comment">
+            <% if comment.user.avatar.attached? %>
+              <%= link_to image_tag(comment.user.avatar, class: "avatar"), user_path(comment.user) %>
+            <% else %>
+              <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(comment.user) %>
+            <% end %>
+
+            <%= link_to comment.user.username, user_path(comment.user), class: "username" %>
+            <span><%= comment.content %></span>
+          </div>
+        <% end %>
       </div>
       
       <div class="data__icons">
@@ -63,13 +66,13 @@
         </time>
       </div>
 
-      <div class="data__addComment">
+      <%= form_for [@post, @post.comments.new], :html => {:class => 'data__addComment'} do |f| %>
         <img class="emoji" src="/icons/Emoji.svg" alt="Emoji" />
-        <textarea class="textarea post" name="comment" rows="1" placeholder="Добавьте комментарий..."></textarea>
-        <button class="submit--text user" type="submit">Опубликовать</button>
-      </div>
-    </div>
+        <%= f.text_area :content, class: 'textarea post', rows: "1", placeholder: "Добавьте комментарий..." %>
+        <%= f.submit "Опубликовать", class: 'submit--text user' %>
+      <% end %>
 
+    </div>
   </section>
 </main>
 

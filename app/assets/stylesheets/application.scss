@@ -281,6 +281,10 @@ li {
   align-items: center;
   gap: 10px;
 
+  &.comment {
+    margin-bottom: 10px;
+  }
+
   .avatar {
     width: 32px;
     height: 32px;

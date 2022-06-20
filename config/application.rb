@@ -11,7 +11,7 @@ Bundler.require(*Rails.groups)
 module InstaV2
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.time_zone = Time.now.zone
+    config.time_zone = "Moscow"
     
     config.load_defaults 6.1
 
