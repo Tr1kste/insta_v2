@@ -45,9 +45,7 @@
     <section class="profile__content">
         <% @user.posts.order(created_at: :desc).each do |post|%>
             <div class="post__wrap">
-                <div class="post__image">
-                    <%= link_to image_tag(post.image), post_path(post)%>
-                </div>
+                <div class="post__image"><%= link_to image_tag(post.image), post_path(post)%></div>
 
                 <% if post.user.id == current_user.id %>
                     <div class="post__icons">

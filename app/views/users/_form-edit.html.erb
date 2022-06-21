@@ -1,4 +1,8 @@
 <section class="edit__form">
+    <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: [:edit_profile, :alert, alert_for(name)] %>
+    <% end %>
+
     <%= form_with model: current_user, local: true do |f| %>
         <div class="form__head">
             <div class="line__wrap">

@@ -364,6 +364,12 @@ li {
     max-width: 750px;
   }
 
+  &.edit_profile {
+    width: 100%;
+    padding-top: 20px;
+    border: none;
+  }
+
   &.alert-warning,
   &.alert-danger {
     color: #cc3333;

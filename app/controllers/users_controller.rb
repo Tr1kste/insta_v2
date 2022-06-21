@@ -14,7 +14,14 @@ class UsersController < ApplicationController
 
     def update
         @user.update(user_params)
-        redirect_to current_user
+
+        if @user.update(user_params)
+            flash[:success] = "Данные обновлены."
+            redirect_to current_user
+        else
+            flash.now[:alert] = "Ошибка заполнения. Пожалуйста, проверьте форму."
+            render :edit
+        end
     end
 
     private
