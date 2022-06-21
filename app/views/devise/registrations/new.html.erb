@@ -12,10 +12,10 @@
         <div class="auth__rightColumn__block__form">
           <%= render "devise/shared/error_messages", resource: resource %>
           
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input--email", placeholder: "Email"%>
-          <%= f.text_field :username, autocomplete: "username", class: "input--text", placeholder: "Ник пользователя"%>
-          <%= f.password_field :password, autocomplete: "new-password", class:"input--password", placeholder: "Пароль" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input--password", placeholder: "Подтверждение пароля" %>
+          <%= f.email_field :email, required: true, autofocus: true, autocomplete: "email", class: "input--email", placeholder: "Email"%>
+          <%= f.text_field :username, required: true, autocomplete: "username", class: "input--text", placeholder: "Ник пользователя"%>
+          <%= f.password_field :password, required: true, autocomplete: "new-password", class:"input--password", placeholder: "Пароль" %>
+          <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class:"input--password", placeholder: "Подтверждение пароля" %>
           <%= f.submit "Зарегистрироваться", class: "input--submit" %>
         </div>
       <% end %>

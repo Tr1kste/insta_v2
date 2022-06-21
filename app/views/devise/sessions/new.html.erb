@@ -4,7 +4,7 @@
   <section class="auth__rightColumn">
     <div class="auth__rightColumn__block">
       <%= image_tag('/images/logo.png', class: "auth__rightColumn__block__logo") %>
-      
+
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: [:log_in, :alert, alert_for(name)] %>
       <% end %>
@@ -18,13 +18,6 @@
           <%= f.submit "Войти", class: "input--submit" %>
 
           <%= link_to "Забыли пароль?", new_password_path(resource_name), class:"forgot__password__link" %>
-
-          <!--<% if devise_mapping.rememberable? %>
-              <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
-          <% end %>-->
         </div>
       <% end %>
     </div>
