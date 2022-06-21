@@ -18,7 +18,7 @@
 
         <div class="home__main__leftColumn_post__icons">
             <div class="home__main__leftColumn_post__icons__wrap">
-                <a href=""><img src="icons/like.svg" alt="like" /></a>
+                <%= link_to image_tag("/icons/like.svg"), like_post_path(post.id), remote: true, id: "like_#{post.id}" %>
                 <a href=""><img src="icons/Comment.svg" alt="comment" /></a>
                 <a href=""><img src="icons/SharePosts.svg" alt="share" /></a>
             </div>
@@ -31,7 +31,7 @@
             <% end %>
         </div>
 
-        <div class="home__main__leftColumn_post__likes">1069 отметок "Нравится"</div>
+        <div class="home__main__leftColumn_post__likes"><%= likers_of post %></div>
 
         <div class="home__main__leftColumn_post__description">
             <%= link_to post.user.username, user_path(post.user) %>

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   resources :posts do
     resources :comments
+    member do
+      get 'like'
+    end
   end
 
   root to: "home#index"

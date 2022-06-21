@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_user, only: %i[index]
-    before_action :set_post, only: %i[show edit update destroy]
+    before_action :set_post, only: %i[show edit update destroy like]
     before_action :owned_post, only: %i[edit update destroy]
 
     def index
@@ -52,6 +52,19 @@ class PostsController < ApplicationController
             flash.now[:alert] = "Ошибка удаления. Пожалуйста, попробуйте еще раз."
             redirect_back fallback_location: root_path
         end
+    end
+
+    def like
+        @post.liked_by current_user
+        redirect_to root_path
+        # if @post.liked_by current_user
+        #     redirect_back fallback_location: root_path
+        # end
+        # respond_to do |format|
+        #     format.html { redirect_back fallback_location: root_path }
+        #     format.js
+        #     end
+        # end
     end
 
     private
