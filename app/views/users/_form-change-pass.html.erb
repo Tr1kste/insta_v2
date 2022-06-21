@@ -4,11 +4,7 @@
     
     <div class="form__head">
         <div class="line__wrap">
-            <% if current_user.avatar.attached? %>
-                <%= image_tag current_user.avatar, class: "head__avatar" %>
-            <% else %>
-                <%= image_tag '/icons/profile.svg', class: "head__avatar" %>
-            <% end %>
+            <%= render "help_views/user_avatar", user: current_user, class_name: "head__avatar" %>
         </div>
         <div class="form__head__wrap">
             <p class="head__name"><%=current_user.username %></p>
