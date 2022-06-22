@@ -7,18 +7,13 @@
     <div class="post__image"><%= image_tag @post.image %></div>
 
     <div class="post__data">
+    
       <div class="data__head">
         <div class="username-and-avatar">
           <%= render "help_views/post_user_avatar", user: @user, post: @post, class_name: "avatar" %>
           <%= link_to @post.user.username, user_path(@post.user), class: "username" %>
         </div>
-
-        <% if @post.user.id == current_user.id %>
-          <div class="data__head__icons">
-            <%= link_to image_tag('/icons/edit_post.svg'), edit_post_path(@post)%>
-            <%= link_to image_tag('/icons/delete.svg'), post_path(@post), method: :delete, data: { confirm: "Вы уверены, что хотите удалить пост?" }%>
-          </div>
-        <% end %>
+        <%= render "help_views/if_delete", user: @user, post: @post, class_name: "data__head__icons" %>
       </div>
 
       <div class="data__comments">

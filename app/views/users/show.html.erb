@@ -20,9 +20,7 @@
             <div class="info__3rd__line">
                 <p class="info__a bold"><%= @user.name %></p>
                 <p class="info__a desc"><%= @user.bio %></p>
-                <% if @user.website %>
-                    <%= link_to @user.website, @user.website%>
-                <% end %>
+                <% if @user.website %><%= link_to @user.website, @user.website%><% end %>
             </div>
         </div>
     </section>
@@ -46,13 +44,7 @@
         <% @user.posts.order(created_at: :desc).each do |post|%>
             <div class="post__wrap">
                 <div class="post__image"><%= link_to image_tag(post.image), post_path(post)%></div>
-
-                <% if post.user.id == current_user.id %>
-                    <div class="post__icons">
-                        <%= link_to image_tag('/icons/edit_post.svg'), edit_post_path(post)%>
-                        <%= link_to image_tag('/icons/delete.svg'), post_path(post), data: { method: :delete, confirm: "Are you sure?" } %>
-                    </div>
-                <% end %>
+                <%= render "help_views/if_delete", user: @user, post: post, class_name: "post__icons" %>
             </div>
         <% end %>
     </section>
