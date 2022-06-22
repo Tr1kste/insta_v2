@@ -13,12 +13,7 @@
 
       <div class="home__main__rightColumn__user">
         <div class="home__main__rightColumn__user_wrap">
-            <% if current_user.avatar.attached? %>
-              <%= link_to image_tag(current_user.avatar, class: "home__main__rightColumn__user__avatar"), user_path(current_user) %>
-            <% else %>
-              <%= link_to image_tag('/icons/profile.svg', class: "home__main__rightColumn__user__avatar"), user_path(current_user) %>
-            <% end %>
-
+          <%= render "help_views/user_avatar_link", user: current_user, class_name: "home__main__rightColumn__user__avatar" %>
           <div class="home__main__rightColumn__user__name">
             <%= link_to current_user.username, user_path(current_user), class: "home__main__rightColumn__user__name__textUser" %>
             <p class="home__main__rightColumn__user__name__textName"><%= current_user.name %></p>
@@ -37,17 +32,10 @@
           <% if user != current_user %>
             <div class="home__main__rightColumn__recUser">
               <div class="home__main__rightColumn__recUser_wrap">
-                <% if user.avatar.attached? %>
-                  <%= link_to image_tag(user.avatar, class: "home__main__rightColumn__recUser__avatar"), user_path(user) %>
-                <% else %>
-                  <%= link_to image_tag('/icons/profile.svg', class: "home__main__rightColumn__user__avatar"), user_path(user) %>
-                <% end %>
-
+                <%= render "help_views/user_avatar_link", user: user, class_name: "home__main__rightColumn__recUser__avatar" %>
                 <div class="home__main__rightColumn__recUser__name">
                   <%= link_to user.username, user_path(user), class: 'home__main__rightColumn__recUser__name__textUser' %>
-                  <% if user.name %>
-                    <p class="home__main__rightColumn__recUser__name__textName"><%= user.name %></p>
-                  <% end %>
+                  <% if user.name %><p class="home__main__rightColumn__recUser__name__textName"><%= user.name %></p><% end %>
                 </div>
               </div>
               <button class="submit--text user">Подписаться</button>

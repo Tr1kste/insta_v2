@@ -24,9 +24,15 @@
         padding: 0 15px;
         height: 60px;
 
-        .home__main__leftColumn_post__header__dots {
-          font-weight: 700;
-          letter-spacing: 2px;
+        .icons_wrap {
+          display: flex;
+          flex-wrap: nowrap;
+          gap: 15px;
+
+          img {
+            width: 24px;
+            height: 24px;
+          }
         }
       }
 
@@ -43,7 +49,8 @@
       .home__main__leftColumn_post__icons {
         display: flex;
         flex-wrap: nowrap;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 20px;
         align-items: center;
         padding: 10px 15px;
         margin: 0;
@@ -51,12 +58,6 @@
         img {
           width: 24px;
           height: 24px;
-        }
-
-        .home__main__leftColumn_post__icons__wrap {
-          display: flex;
-          flex-wrap: nowrap;
-          gap: 20px;
         }
       }
 
