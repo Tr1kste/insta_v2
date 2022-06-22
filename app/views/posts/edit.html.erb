@@ -5,11 +5,13 @@
 
     <%= form_for @post, :html => {:class => 'newPost__main__container'} do |f| %>
         <div class="newPost__leftColumn">
-            <% if @post.image.attached? %>
-                <%= image_tag @post.image, class: "newPost__leftColumn__img"%>
-            <% else %>
-                <%= image_tag "/images/new_post.png", class: "newPost__leftColumn__img" %>
-            <% end %>
+            <div class="newPost_img">
+                <% if @post.image.attached? %>
+                    <%= image_tag @post.image, class: "img_post" %>
+                <% else %>
+                    <%= image_tag "/images/new_post.png", class: "img_post" %>
+                <% end %>
+            </div>
             <p class="newPost__leftColumn__p">Выберите фото</p>
 
             <div class="newPost__leftColumn__fileInput">
@@ -31,7 +33,7 @@
         </div>
 
         <div class="newPost__rightColumn">
-            <div class="username-and-avatar space">
+            <div class="username-and-avatar head_wrap">
                 <%= render "help_views/user_avatar_link", user: current_user, class_name: "avatar" %>
                 <%= link_to current_user.username, user_path(current_user), class: "username" %>
             </div>
