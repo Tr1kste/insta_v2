@@ -32,16 +32,12 @@
 
         <div class="newPost__rightColumn">
             <div class="username-and-avatar space">
-                <% if current_user.avatar.attached? %>
-                    <%= link_to image_tag(current_user.avatar, class: "avatar"), user_path(current_user) %>
-                <% else %>
-                    <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(current_user) %>
-                <% end %>
+                <%= render "help_views/user_avatar_link", user: current_user, class_name: "avatar" %>
                 <%= link_to current_user.username, user_path(current_user), class: "username" %>
             </div>
             <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
             <%= f.text_area :description, class: "textarea new-post", rows: "10", placeholder: "Придумайте подпись..." %>
-            <%= f.submit 'Поделиться', class: 'submit--text new-post' %>
+            <div class="submit-line"><%= f.submit 'Поделиться', class: 'submit--text' %></div>
         </div>
     <% end %>
 </main>
