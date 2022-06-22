@@ -6,8 +6,10 @@ class CommentsController < ApplicationController
         @comment.user_id = current_user.id
 
         if @comment.save
-            flash[:success] = "Ваш комментарий добавлен!"
-            redirect_back fallback_location: root_path
+            respond_to do |format|
+                format.html { redirect_back fallback_location: root_path }
+                format.js
+            end
         else
             flash[:alert] = "Комментарий не добавлен! Пожалуйста, проверьте форму."
             redirect_back fallback_location: root_path
@@ -16,10 +18,14 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment = @post.comments.find(params[:id])
-      
-        @comment.destroy
-        flash[:success] = "Комментарий удален"
-        redirect_back fallback_location: root_path
+
+        if @comment.user_id == current_user.id
+            @comment.delete
+            respond_to do |format|
+                format.html { redirect_back fallback_location: root_path }
+                format.js
+            end
+        end
     end
 
     private

@@ -23,24 +23,9 @@
           <span><%= @post.description %></span>
         </div>
 
-        <% @post.comments.each do |comment| %>
-          <div class="username-and-avatar comment">
-
-            <div class="x__wrap">
-              <div class="y__wrap">
-                <%= render "help_views/comment_user_avatar", user: @user, comment: comment, class_name: "avatar" %>
-                <%= link_to comment.user.username, user_path(comment.user), class: "username" %>
-              </div>
-              <span><%= time_ago_in_words comment.created_at %></span>
-            </div>
-
-              <span><%= comment.content %></span>
-
-              <% if comment.user == current_user %>
-                <%= link_to image_tag('/icons/delete_comment.svg', class: "delete__img"), post_comment_path(@post, comment), method: :delete, data: { confirm: "Вы уверены, что хотите удалить комментарий?" }, class: 'delete__wrap' %>
-              <% end %>
-          </div>
-        <% end %>
+        <div id="comment_post_<%=@post.id%>">
+          <%= render @post.comments, post: @post %>
+        </div>
       </div>
       
       <div class="data__icons">
@@ -57,9 +42,9 @@
         </time>
       </div>
 
-      <%= form_for [@post, @post.comments.new], :html => {:class => 'data__addComment'} do |f| %>
+      <%= form_for [@post, @post.comments.new], remote: true, :html => {:class => 'data__addComment'} do |f| %>
         <img class="emoji" src="/icons/Emoji.svg" alt="Emoji" />
-        <%= f.text_area :content, class: 'textarea post', rows: "1", placeholder: "Добавьте комментарий..." %>
+        <%= f.text_area :content, class: 'textarea post', id: "comment_post_content_#{@post.id}", rows: "1", placeholder: "Добавьте комментарий..." %>
         <%= f.submit "Опубликовать", class: 'submit--text user' %>
       <% end %>
     </div>

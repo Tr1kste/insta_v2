@@ -25,25 +25,17 @@
             <span><%= post.description %></span>
         </div>
 
-        <div class="home__main__leftColumn_post__comments">
-            <% post.comments.each do |comment| %>
-                <div class="home__main__leftColumn_post__comments_item">
-                    <%= link_to comment.user.username, user_path(comment.user)%>
-                    <span><%= comment.content %></span>
-                    <% if comment.user == current_user %>
-                        <%= link_to image_tag('/icons/delete_comment.svg', class: "delete__img"), post_comment_path(post, comment), method: :delete, data: { confirm: "Вы уверены, что хотите удалить комментарий?" }, class: 'delete__wrap' %>
-                    <% end %>
-                </div>
-            <% end %>
+        <div class="home__main__leftColumn_post__comments" id="comments_<%=post.id%>">
+          <%= render post.comments, post: post %>
         </div>
         
         <div class="home__main__leftColumn_post__date">
             <time datetime="<%= post.formatted_created_at %>"><%= post.formatted_created_at %></time>
         </div>
 
-        <%= form_for [post, post.comments.new], :html => {:class => 'home__main__leftColumn_post__addComment'} do |f| %>
+        <%= form_for([post, post.comments.new], remote: true, :html => {:class => 'home__main__leftColumn_post__addComment'}) do |f| %>
             <img class="emoji" src="icons/Emoji.svg" alt="Emoji" />
-            <%= f.text_area :content, class: 'textarea', rows: "1", placeholder: "Добавьте комментарий..." %>
+            <%= f.text_area :content, class: 'textarea', id: "comment_content_#{post.id}", rows: "1", placeholder: "Добавьте комментарий..." %>
             <%= f.submit "Опубликовать", class: 'submit--text' %>
       <% end %>
     </div>
