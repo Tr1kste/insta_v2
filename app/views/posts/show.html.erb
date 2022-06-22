@@ -4,36 +4,26 @@
   <% end %>
 
   <section class="post__wrap">
-    <div class="post__image">
-      <%= image_tag @post.image %>
-    </div>
+    <div class="post__image"><%= image_tag @post.image %></div>
 
     <div class="post__data">
       <div class="data__head">
         <div class="username-and-avatar">
-          <% if @post.user.avatar.attached? %>
-            <%= link_to image_tag(@post.user.avatar, class: "avatar"), user_path(@post.user) %>
-          <% else %>
-            <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(@post.user) %>
-          <% end %>
+          <%= render "help_views/post_user_avatar", user: @user, post: @post, class_name: "avatar" %>
           <%= link_to @post.user.username, user_path(@post.user), class: "username" %>
         </div>
 
         <% if @post.user.id == current_user.id %>
           <div class="data__head__icons">
             <%= link_to image_tag('/icons/edit_post.svg'), edit_post_path(@post)%>
-            <%= link_to image_tag('/icons/delete.svg'), post_path(@post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" }%>
+            <%= link_to image_tag('/icons/delete.svg'), post_path(@post), method: :delete, data: { confirm: "Вы уверены, что хотите удалить пост?" }%>
           </div>
         <% end %>
       </div>
 
       <div class="data__comments">
         <div class="username-and-avatar comment">
-          <% if @post.user.avatar.attached? %>
-            <%= link_to image_tag(@post.user.avatar, class: "avatar"), user_path(@post.user) %>
-          <% else %>
-            <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(@post.user) %>
-          <% end %>
+          <%= render "help_views/post_user_avatar", user: @user, post: @post, class_name: "avatar" %>
           <%= link_to @post.user.username, user_path(@post.user), class: "username" %>
           <span><%= @post.description %></span>
         </div>
@@ -43,22 +33,16 @@
 
             <div class="x__wrap">
               <div class="y__wrap">
-                <% if comment.user.avatar.attached? %>
-                  <%= link_to image_tag(comment.user.avatar, class: "avatar"), user_path(comment.user) %>
-                <% else %>
-                  <%= link_to image_tag('/icons/profile.svg', class: "avatar"), user_path(comment.user) %>
-                <% end %>
-
+                <%= render "help_views/comment_user_avatar", user: @user, comment: comment, class_name: "avatar" %>
                 <%= link_to comment.user.username, user_path(comment.user), class: "username" %>
               </div>
-              
               <span><%= time_ago_in_words comment.created_at %></span>
             </div>
 
               <span><%= comment.content %></span>
 
               <% if comment.user == current_user %>
-                <%= link_to image_tag('/icons/delete_comment.svg', class: "delete__img"), post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete__wrap' %>
+                <%= link_to image_tag('/icons/delete_comment.svg', class: "delete__img"), post_comment_path(@post, comment), method: :delete, data: { confirm: "Вы уверены, что хотите удалить комментарий?" }, class: 'delete__wrap' %>
               <% end %>
           </div>
         <% end %>
@@ -83,7 +67,6 @@
         <%= f.text_area :content, class: 'textarea post', rows: "1", placeholder: "Добавьте комментарий..." %>
         <%= f.submit "Опубликовать", class: 'submit--text user' %>
       <% end %>
-
     </div>
   </section>
 </main>

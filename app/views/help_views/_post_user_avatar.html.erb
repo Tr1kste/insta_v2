@@ -1,0 +1,5 @@
+<% if post.user.avatar.attached? %>
+    <%= link_to image_tag(post.user.avatar, class: class_name), user_path(post.user) %>
+<% else %>
+    <%= link_to image_tag('/icons/profile.svg', class: class_name), user_path(post.user) %>
+<% end %>
