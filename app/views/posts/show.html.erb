@@ -23,7 +23,7 @@
           <span><%= @post.description %></span>
         </div>
 
-        <div id="comment_post_<%=@post.id%>">
+        <div class="comments__area full" id="comments_<%= @post.id %>">
           <%= render @post.comments, post: @post %>
         </div>
       </div>
@@ -44,7 +44,7 @@
 
       <%= form_for [@post, @post.comments.new], remote: true, :html => {:class => 'data__addComment'} do |f| %>
         <img class="emoji" src="/icons/Emoji.svg" alt="Emoji" />
-        <%= f.text_area :content, class: 'textarea post', id: "comment_post_content_#{@post.id}", rows: "1", placeholder: "Добавьте комментарий..." %>
+        <%= f.text_area :content, class: 'textarea post', id: "comment_content_#{@post.id}", rows: "1", placeholder: "Добавьте комментарий..." %>
         <%= f.submit "Опубликовать", class: 'submit--text user' %>
       <% end %>
     </div>

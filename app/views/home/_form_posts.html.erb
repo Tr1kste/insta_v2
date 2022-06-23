@@ -25,10 +25,10 @@
             <span><%= post.description %></span>
         </div>
 
-        <div class="home__main__leftColumn_post__comments" id="comments_<%=post.id%>">
-          <%= render post.comments, post: post %>
+        <div class="comments__area" id="comments_<%=post.id%>">
+            <%= render post.comments, post: post %>
         </div>
-        
+
         <div class="home__main__leftColumn_post__date">
             <time datetime="<%= post.formatted_created_at %>"><%= post.formatted_created_at %></time>
         </div>

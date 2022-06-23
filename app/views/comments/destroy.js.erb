@@ -1,7 +1,3 @@
-if(document.querySelector("#comment_post_<%= @post.id %>")){
-    document.querySelector("#comment_post_<%= @post.id %>").innerHTML = "<% @post.comments.each do |comment| %><%=j render "comments/comment_post", post: @post, comment: comment %><% end %>";
-}
-   
 if(document.querySelector("#comments_<%= @post.id %>")){
     document.querySelector("#comments_<%= @post.id %>").innerHTML = "<%=j render @post.comments, post: @post, comment: @comment %>";
 }

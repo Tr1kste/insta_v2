@@ -6,6 +6,7 @@
 @import url(posts.css);
 @import url(profile.css);
 @import url(subs.css);
+@import url(comments.css);
 
 *,
 *::before,
@@ -275,38 +276,6 @@ li {
   display: flex;
   align-items: center;
   gap: 10px;
-
-  &.comment {
-    margin-bottom: 10px;
-
-    .x__wrap {
-      display: flex;
-      flex-direction: column;
-
-      .y__wrap {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      span {
-        font-size: 10px;
-        color: #8e8e8e;
-        padding-top: 5px;
-      }
-    }
-
-    .wrap__flex {
-      display: flex;
-      flex-direction: column;
-
-      span {
-        font-size: 10px;
-        color: #8e8e8e;
-        padding-top: 5px;
-      }
-    }
-  }
 
   .avatar {
     width: 32px;
