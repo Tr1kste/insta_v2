@@ -13,12 +13,18 @@
         </div>
 
         <div class="home__main__leftColumn_post__icons">
-            <%= link_to image_tag("/icons/like.svg"), like_post_path(post.id), remote: true, id: "like_#{post.id}" %>
+            
+            <% if current_user.liked? post %>
+                <%= link_to "", unlike_post_path(post.id), class: "#{liked_post post}", remote: true, id: "like_#{post.id}" %>
+            <% else %>
+                <%= link_to "", like_post_path(post.id), class: "#{liked_post post}", remote: true, id: "like_#{post.id}" %>
+            <% end %>
+
             <a href=""><img src="icons/Comment.svg" alt="comment" /></a>
             <a href=""><img src="icons/SharePosts.svg" alt="share" /></a>
         </div>
 
-        <div class="home__main__leftColumn_post__likes"><%= likers_of post %></div>
+        <%= render 'posts/likes', post: post, class_name: "home__main__leftColumn_post__likes" %>
 
         <div class="home__main__leftColumn_post__description">
             <%= link_to post.user.username, user_path(post.user) %>

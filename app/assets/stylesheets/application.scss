@@ -374,3 +374,15 @@ li {
     font-style: italic;
   }
 }
+
+.like_non_fill {
+  width: 24px;
+  height: 24px;
+  background-image: url(/icons/like.svg);
+}
+
+.like_fill {
+  width: 24px;
+  height: 24px;
+  background-image: url(/icons/like_fill.svg);
+}

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_user, only: %i[index]
-    before_action :set_post, only: %i[show edit update destroy like]
+    before_action :set_post, only: %i[show edit update destroy like unlike]
     before_action :owned_post, only: %i[edit update destroy]
 
     def index
@@ -56,15 +56,18 @@ class PostsController < ApplicationController
 
     def like
         @post.liked_by current_user
-        redirect_to root_path
-        # if @post.liked_by current_user
-        #     redirect_back fallback_location: root_path
-        # end
-        # respond_to do |format|
-        #     format.html { redirect_back fallback_location: root_path }
-        #     format.js
-        #     end
-        # end
+        respond_to do |format|
+            format.html { redirect_back fallback_location: root_path }
+            format.js
+        end
+    end
+
+    def unlike
+        @post.unliked_by current_user
+        respond_to do |format|
+            format.html { redirect_back fallback_location: root_path }
+            format.js
+        end
     end
 
     private
