@@ -24,6 +24,24 @@ class UsersController < ApplicationController
         end
     end
 
+    def follow
+        if current_user.followees << @user
+            respond_to do |format|
+                format.html { redirect_to user_path(@user) }
+                format.js
+            end
+        end
+    end
+
+    def unfollow
+        if current_user.followed_users.find_by(followee_id: @user.id).destroy
+            respond_to do |format|
+                format.html { redirect_to user_path(@user) }
+                format.js
+            end
+        end
+    end
+
     private
 
     def user_params

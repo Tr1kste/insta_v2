@@ -1,0 +1,5 @@
+if(document.querySelector("#follow_link")){
+    document.querySelector("#follow_link").innerHTML = "Отписаться";
+    document.querySelector("#follow_link").href = "/users/<%= @user.id %>/unfollow"
+    document.querySelector("#follow_link").id = "unfollow_link"
+}

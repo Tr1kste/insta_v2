@@ -10,12 +10,18 @@
                 <% if @user.id == current_user.id %>
                     <%= link_to "Редактировать профиль", edit_user_path(current_user), class: "info__linkEdit" %>
                     <%= link_to image_tag('/icons/edit.svg', class: "info__iconEdit"), edit_user_path(current_user) %>
+                <% else %>
+                    <% if current_user.followees.include?(@user) %>
+                        <%= link_to "Отписаться", unfollow_user_path, method: :post, remote: true, id: "unfollow_link", class: "info__follow" %>
+                    <% else %>
+                        <%= link_to "Подписаться", follow_user_path, method: :post, remote: true, id: "follow_link", class: "info__follow" %>
+                    <% end %>
                 <% end %>
             </div>
             <div class="info__2nd__line">
                 <p class="info__a"><span><%= @user.posts.count %></span>публикаций</p>
-                <a href="subs.html" class="info__a"><span>21</span>подписчиков</a>
-                <a href="subs.html" class="info__a"><span>45</span>подписок</a>
+                <a href="subs.html" class="info__a"><span><%= @user.followees.count %></span>подписчиков</a>
+                <a href="subs.html" class="info__a"><span><%= @user.followed_users.count %></span>подписок</a>
             </div>
             <div class="info__3rd__line">
                 <p class="info__a bold"><%= @user.name %></p>
