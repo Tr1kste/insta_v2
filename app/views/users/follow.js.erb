@@ -1,5 +1,9 @@
 if(document.querySelector("#follow_link")){
     document.querySelector("#follow_link").innerHTML = "Отписаться";
-    document.querySelector("#follow_link").href = "/users/<%= @user.id %>/unfollow"
-    document.querySelector("#follow_link").id = "unfollow_link"
+    document.querySelector("#follow_link").href = "/users/<%= @user.id %>/unfollow";
+    document.querySelector("#follow_link").classList.remove("info__follow");
+    document.querySelector("#follow_link").classList.add("info__unfollow");
+    document.querySelector("#follow_link").id = "unfollow_link";
+
+    document.querySelector("#follow_block").innerHTML = "<%=j render "users/follow_block", user: @user %>";
 }

@@ -87,12 +87,12 @@
           height: 24px;
         }
 
-        .info__follow {
+        .info__follow,
+        .info__unfollow {
           margin: 0 0 0 20px;
           font-family: inherit;
           font-size: 14px;
           line-height: 28px;
-          background: #0095f6;
           border-radius: 3px;
           padding: 0 25px;
           border: none;
@@ -102,6 +102,13 @@
           &:hover {
             cursor: pointer;
           }
+        }
+        .info__follow {
+          background: #0095f6;
+        }
+
+        .info__unfollow {
+          background: #5b2700;
         }
       }
 
@@ -339,4 +346,9 @@
 
 .d-none {
   display: none;
+}
+
+#follow_block {
+  display: flex;
+  gap: 40px;
 }
