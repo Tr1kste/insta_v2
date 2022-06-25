@@ -3,9 +3,13 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
-  get "home/index"
+  get "home/index"  
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: %i[show edit update] do
+    get "followers", to: 'follows#followers'
+    get "followees", to: 'follows#followees'
+  end
+
   resources :posts do
     resources :comments
     member do

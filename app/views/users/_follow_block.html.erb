@@ -1,6 +1,6 @@
-<%= link_to edit_user_path(current_user), class: "info__a" do %>
-    <span><%= user.following_users.count %></span>подписчиков
+<%= link_to user_followers_path(user), class: "info__a" do %>
+    <span><%= user.followers.count %></span>подписчиков
 <% end %>
-<%= link_to edit_user_path(current_user), class: "info__a" do %>
-    <span><%= user.followed_users.count %></span>подписок
+<%= link_to user_followees_path(user), class: "info__a" do %>
+    <span><%= user.followees.count %></span>подписок
 <% end %>

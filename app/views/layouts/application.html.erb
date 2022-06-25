@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <title>InstaV2</title>
+    <title><%= content_for?(:title) ? content_for(:title) : "Instagram by Kul1chik" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <%= csrf_meta_tags %> 
     <%= csp_meta_tag %>
@@ -13,9 +13,6 @@
     <% if user_signed_in? %>
       <%= render "layouts/header" %>
     <% end %>
-    <!--<% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: name %>
-    <% end %>-->
     <%= yield %>
     <%= javascript_pack_tag 'custom', 'data-turbolinks-track': 'reload' %>
   </body>

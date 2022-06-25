@@ -1,0 +1,32 @@
+<% title "Мои подписчики" %>
+<main class="subs">
+    <h1>Мои подписчики</h1>
+    <section class="subs__wrap">
+
+    <% @user.followers.each do |follower| %>
+
+    <div class="subs__item">
+        <% if follower.avatar.attached? %>
+            <%= link_to image_tag(follower.avatar, class: "subs__item__avatar"), user_path(follower) %>
+        <% else %>
+            <%= link_to image_tag('/icons/profile.svg', class: "subs__item__avatar"), user_path(follower) %>
+        <% end %>
+
+        <div class="subs__item__info">
+            <%= link_to follower.username, user_path(follower), class: "subs__item__username" %>
+            <p class="subs__item__description"><%= @user.name %></p>
+        </div>
+
+        <% if current_user.followees.include?(follower) %>
+            <%= link_to "Отписаться", unfollow_user_path(follower), method: :post, remote: true, id: "unfollow_link_#{follower.id}", class: "submit--text subs" %>
+        <% else %>
+            <%= link_to "Подписаться", follow_user_path(follower), method: :post, remote: true, id: "follow_link_#{follower.id}", class: "submit--text subs" %>
+        <% end %>
+
+    </div>
+
+    <% end %>
+    </section>
+</main>
+
+<%= render "layouts/footer" %>

@@ -8,4 +8,8 @@ module ApplicationHelper
         notice: 'alert-info'
         }[flash_type.to_sym] || flash_type.to_s
     end
+
+    def title(page_title)
+        content_for(:title) { page_title }
+    end
 end

@@ -1,3 +1,4 @@
+<% title "Редактирование поста №#{@post.id}" %>
 <main>
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: [:new_post, :alert, alert_for(name)] %>

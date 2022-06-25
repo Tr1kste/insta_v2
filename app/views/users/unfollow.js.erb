@@ -7,3 +7,9 @@ if(document.querySelector("#unfollow_link")){
 
     document.querySelector("#follow_block").innerHTML = "<%=j render "users/follow_block", user: @user %>";
 }
+
+if(document.querySelector("#unfollow_link_<%= @user.id %>")){
+    document.querySelector("#unfollow_link_<%= @user.id %>").innerHTML = "Подписаться";
+    document.querySelector("#unfollow_link_<%= @user.id %>").href = "/users/<%= @user.id %>/follow";
+    document.querySelector("#unfollow_link_<%= @user.id %>").id = "follow_link_<%= @user.id %>";
+}

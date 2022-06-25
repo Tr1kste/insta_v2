@@ -1,3 +1,4 @@
+<% title "Пост #{@post.id}" %>
 <main class="post__show">
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: [:home_message, :alert, alert_for(name)] %>
