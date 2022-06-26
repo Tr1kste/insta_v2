@@ -12,6 +12,7 @@ class Post < ApplicationRecord
     validate :image_presence
 
     scope :of_followed_users, -> (following_users) { where user_id: following_users }
+    scope :of_current_user, -> (current_user) { where user_id: current_user }
     
     def image_presence
       errors.add(:image, "Не может быть пустым!") unless image.attached?
