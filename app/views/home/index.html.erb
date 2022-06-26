@@ -4,8 +4,9 @@
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: [:home_message, :alert, alert_for(name)] %>
     <% end %>
-    
-    <%= render 'home/form_posts' %>
+    <div id="home_posts">
+      <%= render 'home/form_posts' %>
+    </div>
   </section>
 
   <section class="home__main__rightColumn">
@@ -23,24 +24,26 @@
       </div>
 
       <div class="home__main__rightColumn__text">
-        <p class="home__main__rightColumn__text__p">Рекомендации для вас</p>
+        <p class="home__main__rightColumn__text__p">Рекомендации для Вас</p>
         <a class="home__main__rightColumn__text__a" href="">Все</a>
       </div>
 
       <div class="home__main__rightColumn__recUser_container">
-        <% @users.limit(6).each do |user| %>
-          <% if user != current_user %>
-            <div class="home__main__rightColumn__recUser">
-              <div class="home__main__rightColumn__recUser_wrap">
-                <%= render "help_views/user_avatar_link", user: user, class_name: "home__main__rightColumn__recUser__avatar" %>
-                <div class="home__main__rightColumn__recUser__name">
-                  <%= link_to user.username, user_path(user), class: 'home__main__rightColumn__recUser__name__textUser' %>
-                  <% if user.name %><p class="home__main__rightColumn__recUser__name__textName"><%= user.name %></p><% end %>
+        <% @count_users = 0 %>
+        <% @users.each do |user| %>
+            <% if user != current_user and current_user.followees.exclude?(user) and @count_users < 5 %>
+                <div class="home__main__rightColumn__recUser">
+                    <div class="home__main__rightColumn__recUser_wrap">
+                        <%= render "help_views/user_avatar_link", user: user, class_name: "home__main__rightColumn__recUser__avatar" %>
+                        <div class="home__main__rightColumn__recUser__name">
+                            <%= link_to user.username, user_path(user), class: 'home__main__rightColumn__recUser__name__textUser' %>
+                            <% if user.name %><p class="home__main__rightColumn__recUser__name__textName"><%= user.name %></p><% end %>
+                        </div>
+                    </div>
+                    <%= link_to "Подписаться", follow_user_path(user), id:"follow_link_#{user.id}", method: :post, remote: true, class: "submit--text user" %>
                 </div>
-              </div>
-              <button class="submit--text user">Подписаться</button>
-            </div>
-          <% end %>
+            <% @count_users += 1 %>
+            <% end %>
         <% end %>
       </div>
 

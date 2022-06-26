@@ -10,6 +10,8 @@ class Post < ApplicationRecord
     validates :description, presence: true, length: { minimum: 5, maximum: 300 }
 
     validate :image_presence
+
+    scope :of_followed_users, -> (following_users) { where user_id: following_users }
     
     def image_presence
       errors.add(:image, "Не может быть пустым!") unless image.attached?
