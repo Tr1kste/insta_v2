@@ -1,11 +1,10 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_user, only: %i[index]
     before_action :set_post, only: %i[show edit update destroy like unlike]
     before_action :owned_post, only: %i[edit update destroy]
 
     def index
-        @posts = @user.posts.order(created_at: :desc)
+        @posts = Post.all.order(created_at: :desc)
     end
     
     def new
@@ -74,10 +73,6 @@ class PostsController < ApplicationController
 
     def post_params
         params.require(:post).permit(:description, :image, :user_id)
-    end
-
-    def set_user
-        @user = User.find(params[id])
     end
 
     def set_post
