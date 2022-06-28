@@ -25,7 +25,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe '#show' do
-        
+
     end
 
     describe '#new' do
@@ -47,6 +47,10 @@ RSpec.describe PostsController, type: :controller do
 
             it 'create a post' do
                 expect { subject }.to change(Post, :count).by(1)
+            end
+
+            it 'flash message success create' do
+                subject
                 expect(flash[:success]).to be_present
             end
 
@@ -67,6 +71,10 @@ RSpec.describe PostsController, type: :controller do
 
             it 'post not create' do
                 expect { subject }.not_to change(user.posts, :count )
+            end
+
+            it 'flash message alert create' do
+                subject
                 expect(flash[:alert]).to be_present
             end
         end
@@ -74,22 +82,36 @@ RSpec.describe PostsController, type: :controller do
 
     describe '#destroy' do
         subject { process :destroy, method: :delete, params: params }
-        let!(:post) { create :post, user: user }
+        
         let(:params) { { id: post.id } }
         
-        it 'deletes the post' do
-            expect { subject }.to change(user.posts, :count).by(-1)
-            expect(flash[:success]).to be_present
-            should redirect_to(root_path)
+        context 'success delete' do
+            let!(:post) { create :post, user: user }
+
+            it 'delete the post' do
+                expect { subject }.to change(user.posts, :count).by(-1) 
+            end
+    
+            it 'flash message success delete' do
+                subject
+                expect(flash[:success]).to be_present
+            end
+            
+            it { should redirect_to(root_path) }
         end
 
         context 'user tries to remove someones post' do
             let!(:post) { create :post }
+
+            it { should redirect_to(root_path) }
     
-            it 'exception' do
-                expect { subject }.to raise_exception(ActiveRecord::RecordNotFound).and(
-                    change(user.posts, :count).by(0)
-                )
+            it 'does not delete post' do
+                expect { subject }.not_to change(user.posts, :count )
+            end
+
+            it 'flash message alert delete' do
+                subject
+                expect(flash[:alert]).to be_present
             end
         end       
     end
