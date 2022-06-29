@@ -186,4 +186,61 @@ RSpec.describe PostsController, type: :controller do
             end
         end       
     end
+
+    describe '#like' do
+        subject { process :like, params: params, xhr: false }
+
+        let(:params) { { id: post, user_id: user } }
+        let!(:post) { create :post, user: user }
+        let(:votes) { post.votes_for.up }
+
+        it 'like post' do
+            expect { subject }.to change { votes.size }.by(1)
+        end
+
+        it { expect(subject.content_type).to include('text/html') }
+
+        it { should redirect_to(root_path) }
+
+        context 'js format' do
+            subject { process :like, params: params, xhr: true }
+
+            it 'like post' do
+                expect { subject }.to change { votes.size }.by(1)
+            end
+
+            it { expect(subject.content_type).to include('text/javascript') }
+
+            it { expect(subject).not_to have_http_status(:redirect) }
+        end
+    end
+
+    describe '#unlike' do
+        subject { process :unlike, params: params, xhr: false }
+
+        let(:params) { { id: post, user_id: user } }
+        let!(:post) { create :post, user: user }
+        let!(:vote_up) { post.liked_by user }
+        let(:votes) { post.votes_for }
+
+        it 'unlike post' do
+            expect { subject }.to change { votes.size }.by(-1)
+        end
+
+        it { expect(subject.content_type).to include('text/html') }
+
+        it { should redirect_to(root_path) }
+
+        context 'js format' do
+            subject { process :unlike, params: params, xhr: true }
+
+            it 'unlike post' do
+                expect { subject }.to change { votes.size }.by(-1)
+            end
+
+            it { expect(subject.content_type).to include('text/javascript') }
+
+            it { expect(subject).not_to have_http_status(:redirect) }
+        end
+    end
 end
