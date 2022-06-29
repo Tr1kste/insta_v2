@@ -20,12 +20,23 @@ RSpec.describe PostsController, type: :controller do
 
         context 'when user is not sign in' do
             before { sign_out user }
+            
             it { should redirect_to(new_user_session_path) }
         end
     end
 
     describe '#show' do
+        subject { process :show, params: params }
 
+        let(:params) { { user_id: user.id, id: post } }
+        let!(:post) { create :post, user: user }
+      
+        it 'assigns @post' do
+          subject
+          expect(assigns(:post)).to eq(post)
+        end
+      
+        it { should render_template('show') }
     end
 
     describe '#new' do
@@ -40,9 +51,9 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe '#create' do
+        subject { process :create, method: :post, params: params }
+        
         context 'success' do
-            subject { process :create, method: :post, params: params }
-
             let(:params) { { post: attributes_for(:post, user: create(:user)) } }
 
             it 'create a post' do
@@ -63,8 +74,6 @@ RSpec.describe PostsController, type: :controller do
         end
 
         context 'invalid params' do
-            subject { process :create, method: :post, params: params }
-
             let(:params) { { post: { user_id: nil, post: { description: nil } } } }
 
             it { should render_template('new') }
@@ -79,6 +88,68 @@ RSpec.describe PostsController, type: :controller do
             end
         end
     end
+
+    describe '#edit' do
+        subject { process :edit, method: :get, params: params }
+
+        let(:params) { { id: post, user_id: user } }   
+        let!(:post) { create :post, user: user }
+      
+        it { should render_template('edit') }
+      
+        it 'assigns server policy' do
+          subject
+          expect(assigns :post).to eq post
+        end
+
+        context 'user tries to update someones post' do
+            let!(:post) { create :post }
+
+            it { should redirect_to(root_path) }
+    
+            it 'does not update post' do
+                expect { subject }.not_to change { post.reload }
+            end
+
+            it 'flash message alert edit' do
+                subject
+                expect(flash[:alert]).to be_present
+            end
+        end
+    end
+    
+    describe '#update' do
+        subject { process :update, method: :put, params: params }
+
+        let!(:post) { create :post, user: user }
+        let(:params) { { id: post, user_id: user, post: { description: 'description' } } }
+
+        it { should redirect_to(post_path(post.id)) }
+
+        it 'updates post' do
+            expect { subject }.to change { post.reload.description }.to('description')
+        end
+
+        it 'flash message success update' do
+            subject
+            expect(flash[:success]).to be_present
+        end
+
+        context 'with bad params' do
+            let(:params) { { id: post, user_id: user, post: { description: '' } } }
+
+            it 'does not update post' do
+                expect { subject }.not_to change { post.reload.description }
+            end
+
+            it 'flash message alert update' do
+                subject
+                expect(flash[:alert]).to be_present
+            end
+
+            it { should render_template('edit') }
+        end
+    end      
 
     describe '#destroy' do
         subject { process :destroy, method: :delete, params: params }
