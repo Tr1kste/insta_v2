@@ -6,6 +6,14 @@ RSpec.describe PostsController, type: :controller do
 
     before { sign_in user }
 
+    context 'before actions' do
+        it { should use_before_action(:authenticate_user!) }
+    
+        it { should use_before_action(:set_post) }
+    
+        it { should use_before_action(:owned_post) }
+    end
+
     describe '#index' do
         subject { process :index, method: :post, params: params }
 
@@ -241,6 +249,14 @@ RSpec.describe PostsController, type: :controller do
             it { expect(subject.content_type).to include('text/javascript') }
 
             it { expect(subject).not_to have_http_status(:redirect) }
+        end
+    end
+
+    describe '.post_params' do
+        it do
+            should permit(:description, :image, :user_id).
+            for(:create, params: params).
+            on(:post)
         end
     end
 end
