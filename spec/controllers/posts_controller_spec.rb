@@ -228,8 +228,9 @@ RSpec.describe PostsController, type: :controller do
 
         let(:params) { { id: post, user_id: user } }
         let!(:post) { create :post, user: user }
-        let!(:vote_up) { post.liked_by user }
         let(:votes) { post.votes_for }
+
+        before { 3.times do post.liked_by user end }
 
         it 'unlike post' do
             expect { subject }.to change { votes.size }.by(-1)

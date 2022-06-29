@@ -2,13 +2,16 @@ FactoryBot.define do
     factory :user do
         username { FFaker::Name.name }
         email  { FFaker::Internet.unique.email }
+        avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/pixel.jpeg'), 'image/jpeg') }
         password { "password" }
         password_confirmation { "password" }
+    end
 
-        trait :with_post do
-            after(:build) do |user|
-                build(:post, user_id: user.id)
-            end
-        end
+    factory :second_user, class: :user do
+        username { FFaker::Name.name }
+        email { Faker::Internet.unique.email }
+        avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/pixel.jpeg'), 'image/jpeg') }
+        password { 'password2' }
+        password_confirmation { 'password2' }
     end
 end
