@@ -27,6 +27,12 @@ RSpec.describe UsersController, type: :controller do
             subject
             expect(assigns :user).to eq user
         end
+
+        context 'non authorize user' do
+            before { sign_out user }
+
+            it { should redirect_to(new_user_session_path) }
+        end
     end
 
     describe '#edit' do
@@ -40,28 +46,50 @@ RSpec.describe UsersController, type: :controller do
         end
     end
 
-    describe 'update' do
+    describe '#update' do
         subject { process :update, method: :put, params: params }
 
-        context 'log in authorize user' do
-          let(:params) { { id: user, user: { website: 'myweb.com', name: 'Kulich' } } }
-    
-          it 'updates users bio' do
-            expect { subject }.to change { user.reload.website }.to('myweb.com')
-          end
+        context 'success update' do
+            let(:params) { { id: user, user: { website: 'myweb.com', name: 'Kulich' } } }
 
-          it 'updates users name' do
-            expect { subject }.to change { user.reload.name }.to('Kulich')
-          end
+            it 'updates users bio' do
+                expect { subject }.to change { user.reload.website }.to('myweb.com')
+            end
 
-          it 'permit' do
-            should permit(:bio, :name).for(:update, params: params).on(:user)
-          end
+            it 'updates users name' do
+                expect { subject }.to change { user.reload.name }.to('Kulich')
+            end
 
-          it 'assigns server policy' do
-            subject
-            expect(assigns :user).to eq user
-          end
+            it 'permit' do
+                should permit(:bio, :name).for(:update, params: params).on(:user)
+            end
+
+            it 'assigns server policy' do
+                subject
+                expect(assigns :user).to eq user
+            end
+
+            it 'flash message success update' do
+                subject
+                expect(flash[:success]).to be_present
+            end
+
+            it { should redirect_to(user_path(user.id)) }
+        end
+
+        context 'invalid params' do
+            let(:params) { { id: user, user: { username: nil } } }
+
+            it 'doesnt updates users bio' do
+                expect { subject }.not_to change { user.reload.username }
+            end
+
+            it { should render_template('edit') }
+
+            it 'flash message alert update' do
+                subject
+                expect(flash[:alert]).to be_present
+            end
         end
     end
 
