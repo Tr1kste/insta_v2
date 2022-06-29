@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-    let(:user) { create :user }
     subject { build(:post, user_id: user.id) }
+    
+    let(:user) { create :user }
 
     describe 'relashionships' do
         it { should belong_to(:user) }
