@@ -79,6 +79,10 @@ RSpec.describe PostsController, type: :controller do
                 subject
                 expect(assigns(:post).user).to eq user
             end
+
+            it 'permit' do
+                should permit(:description, :image, :user_id).for(:create, params: params).on(:post)
+            end
         end
 
         context 'invalid params' do
@@ -110,12 +114,12 @@ RSpec.describe PostsController, type: :controller do
           expect(assigns :post).to eq post
         end
 
-        context 'user tries to update someones post' do
+        context 'user tries to edit someones post' do
             let!(:post) { create :post }
 
             it { should redirect_to(root_path) }
     
-            it 'does not update post' do
+            it 'does not edit post' do
                 expect { subject }.not_to change { post.reload }
             end
 
@@ -192,7 +196,7 @@ RSpec.describe PostsController, type: :controller do
                 subject
                 expect(flash[:alert]).to be_present
             end
-        end       
+        end
     end
 
     describe '#like' do

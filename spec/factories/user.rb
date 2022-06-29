@@ -9,7 +9,7 @@ FactoryBot.define do
 
     factory :second_user, class: :user do
         username { FFaker::Name.name }
-        email { Faker::Internet.unique.email }
+        email { FFaker::Internet.unique.email }
         avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/pixel.jpeg'), 'image/jpeg') }
         password { 'password2' }
         password_confirmation { 'password2' }
