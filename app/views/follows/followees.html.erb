@@ -1,4 +1,4 @@
-<% title "Мои подписки" %>
+<% title "Подписки #{@user.username}" %>
 <main class="subs">
     <h1>Подписки пользователя <%= @user.username %>:</h1>
         <% if @user.followees.count > 0 %>
