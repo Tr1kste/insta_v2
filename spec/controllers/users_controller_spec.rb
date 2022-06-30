@@ -6,10 +6,12 @@ RSpec.describe UsersController, type: :controller do
 
     before { sign_in user }
 
-    context 'before actions' do
+    describe 'before actions' do
         it { should use_before_action(:authenticate_user!) }
-    
+
         it { should use_before_action(:set_user) }
+
+        it { should use_before_action(:owned_post) }
     end
 
     describe '#index' do
@@ -90,6 +92,79 @@ RSpec.describe UsersController, type: :controller do
                 subject
                 expect(flash[:alert]).to be_present
             end
+        end
+    end
+
+    describe '#follow' do
+        let!(:user2) { create :second_user }
+        let!(:params) { { id: user2.id } }
+        
+        context 'js format' do
+            subject { process :follow, method: :post, params: params, xhr: true }
+
+            it 'create following' do
+                expect { subject }.to change { user.followees.count }.by(1)
+            end
+
+            it { expect(subject.content_type).to include('text/javascript') }
+
+            it { expect(subject).not_to have_http_status(:redirect) }
+    
+            context 'already following' do
+                it 'no create another similar following' do
+                    subject
+                    expect { subject }.to_not change { user.followees.count }
+                end
+            end
+        end
+
+        context 'html format' do
+            subject { process :follow, method: :post, params: params, xhr: false }
+
+            it 'create following' do
+                expect { subject }.to change { user.followees.count }.by(1)
+            end
+
+            it { expect(subject.content_type).to include('text/html') }
+
+            it { should redirect_to(user_path(user2.id)) }
+    
+            context 'already following' do
+                it 'no create another similar following' do
+                    subject
+                    expect { subject }.to_not change { user.followees.count }
+                end
+            end
+        end
+    end
+
+    describe '#unfollow' do
+        let!(:user2) { create :second_user }
+        let!(:follow) { create(:follow, follower: user, followee: user2) }
+        let!(:params) { { id: user2.id } }
+
+        context 'js format' do
+            subject { process :unfollow, method: :post, params: params, xhr: true }
+
+            it 'destroy following' do
+                expect { subject }.to change { user.followees.count }.by(-1)
+            end
+
+            it { expect(subject.content_type).to include('text/javascript') }
+
+            it { expect(subject).not_to have_http_status(:redirect) }
+        end
+
+        context 'html format' do
+            subject { process :unfollow, method: :post, params: params, xhr: false }
+
+            it 'create following' do
+                expect { subject }.to change { user.followees.count }.by(-1)
+            end
+
+            it { expect(subject.content_type).to include('text/html') }
+
+            it { should redirect_to(user_path(user2.id)) }
         end
     end
 

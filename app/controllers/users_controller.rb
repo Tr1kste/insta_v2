@@ -24,10 +24,12 @@ class UsersController < ApplicationController
     end
 
     def follow
-        if current_user.followees << @user
-            respond_to do |format|
-                format.html { redirect_to user_path(@user) }
-                format.js
+        if current_user != @user
+            if current_user.followees << @user
+                respond_to do |format|
+                    format.html { redirect_to user_path(@user) }
+                    format.js
+                end
             end
         end
     end

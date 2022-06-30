@@ -15,12 +15,6 @@
                             <%= link_to follower.username, user_path(follower), class: "subs__item__username" %>
                             <p class="subs__item__description"><%= @user.name %></p>
                         </div>
-
-                        <% if current_user.followees.include?(follower) %>
-                            <%= link_to "Отписаться", unfollow_user_path(follower), method: :post, remote: true, id: "unfollow_link_#{follower.id}", class: "submit--text subs" %>
-                        <% else %>
-                            <%= link_to "Подписаться", follow_user_path(follower), method: :post, remote: true, id: "follow_link_#{follower.id}", class: "submit--text subs" %>
-                        <% end %>
                     </div>
                 <% end %>
             </section>
