@@ -2,9 +2,13 @@ class FollowsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_user
 
-    def followers;end
+    def followers
+        @followers = @user.followers
+    end
 
-    def followees;end
+    def followees
+        @followees = @user.followees
+    end
 
     private
 

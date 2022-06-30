@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostsController, type: :controller do
+RSpec.describe HomeController, type: :controller do
     let(:user) { create :user }
     let(:params) { { post: attributes_for(:post) } }
 
