@@ -1,0 +1,10 @@
+<main class="home__main">
+  <section class="home__main__leftColumn">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: [:home_message, :alert, alert_for(name)] %>
+    <% end %>
+    <div id="home_posts">
+      <%= render 'posts/form_posts' %>
+    </div>
+  </section>
+</main>

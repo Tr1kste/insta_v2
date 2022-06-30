@@ -4,7 +4,8 @@ class PostsController < ApplicationController
     before_action :owned_post, only: %i[edit update destroy]
 
     def index
-        @posts = Post.all.order(created_at: :desc)
+        @posts = Post.all
+        @users = User.order(:name)
     end
     
     def show

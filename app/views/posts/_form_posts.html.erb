@@ -1,0 +1,48 @@
+<% @posts.each do |post| %>
+    <div class="home__main__leftColumn_post">
+        <div class="home__main__leftColumn_post__header">
+            <div class="username-and-avatar">
+                <%= render "help_views/post_user_avatar", user: @user, post: post, class_name: "avatar" %>
+                <%= link_to post.user.username, user_path(post.user), class:"username" %>
+            </div>
+            <%= render "help_views/if_delete", user: @user, post: post, class_name: "icons_wrap" %>
+        </div>
+
+        <div class="home__main__leftColumn_post__img">
+            <%= link_to image_tag(post.image), post_path(post) %>
+        </div>
+
+        <div class="home__main__leftColumn_post__icons">
+            
+            <% if current_user.liked? post %>
+                <%= link_to "", unlike_post_path(post.id), class: "#{liked_post post}", remote: true, id: "like_#{post.id}" %>
+            <% else %>
+                <%= link_to "", like_post_path(post.id), class: "#{liked_post post}", remote: true, id: "like_#{post.id}" %>
+            <% end %>
+
+            <a href=""><img src="icons/Comment.svg" alt="comment" /></a>
+            <a href=""><img src="icons/SharePosts.svg" alt="share" /></a>
+        </div>
+
+        <%= render 'posts/likes', post: post, class_name: "home__main__leftColumn_post__likes" %>
+
+        <div class="home__main__leftColumn_post__description">
+            <%= link_to post.user.username, user_path(post.user) %>
+            <span><%= post.description %></span>
+        </div>
+
+        <div class="comments__area" id="comments_<%=post.id%>">
+            <%= render post.comments, post: post %>
+        </div>
+
+        <div class="home__main__leftColumn_post__date">
+            <time datetime="<%= post.formatted_created_at %>"><%= post.formatted_created_at %></time>
+        </div>
+
+        <%= form_for([post, post.comments.new], remote: true, :html => {:class => 'home__main__leftColumn_post__addComment'}) do |f| %>
+            <img class="emoji" src="icons/Emoji.svg" alt="Emoji" />
+            <%= f.text_area :content, class: 'textarea', id: "comment_content_#{post.id}", rows: "1", placeholder: "Добавьте комментарий..." %>
+            <%= f.submit "Опубликовать", class: 'submit--text' %>
+        <% end %>
+    </div>
+<% end %>
