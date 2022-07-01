@@ -20,8 +20,7 @@ class CommentsController < ApplicationController
     def destroy
         @comment = @post.comments.find(params[:id])
 
-        if @comment.user_id == current_user.id
-            @comment.delete
+        if @comment.destroy
             respond_to do |format|
                 format.html { redirect_back fallback_location: root_path }
                 format.js
