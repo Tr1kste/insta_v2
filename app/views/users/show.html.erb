@@ -19,10 +19,12 @@
                     <% end %>
                 <% end %>
             </div>
+
             <div class="info__2nd__line">
                 <p class="info__a"><span><%= @user.posts.count %></span>публикаций</p>
                 <div id="follow_block"><%= render "users/follow_block", user: @user %></div>
             </div>
+
             <div class="info__3rd__line">
                 <p class="info__a bold"><%= @user.name %></p>
                 <p class="info__a desc"><%= @user.bio %></p>

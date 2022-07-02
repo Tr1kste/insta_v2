@@ -13,15 +13,14 @@
         </div>
 
         <div class="home__main__leftColumn_post__icons">
-            
             <% if current_user.liked? post %>
                 <%= link_to "", unlike_post_path(post.id), class: "#{liked_post post}", remote: true, id: "like_#{post.id}" %>
             <% else %>
                 <%= link_to "", like_post_path(post.id), class: "#{liked_post post}", remote: true, id: "like_#{post.id}" %>
             <% end %>
 
-            <a href=""><img src="icons/Comment.svg" alt="comment" /></a>
-            <a href=""><img src="icons/SharePosts.svg" alt="share" /></a>
+            <%= image_tag("/icons/Comment.svg") %>
+            <%= image_tag("/icons/SharePosts.svg") %>
         </div>
 
         <%= render 'posts/likes', post: post, class_name: "home__main__leftColumn_post__likes" %>
@@ -40,7 +39,7 @@
         </div>
 
         <%= form_for([post, post.comments.new], remote: true, :html => {:class => 'home__main__leftColumn_post__addComment'}) do |f| %>
-            <img class="emoji" src="icons/Emoji.svg" alt="Emoji" />
+            <%= image_tag("/icons/Emoji.svg", class: "emoji") %>
             <%= f.text_area :content, class: 'textarea', id: "comment_content_#{post.id}", rows: "1", placeholder: "Добавьте комментарий..." %>
             <%= f.submit "Опубликовать", class: 'submit--text' %>
       <% end %>
