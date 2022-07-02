@@ -7,3 +7,11 @@ if (el) {
     p.innerHTML = event.target.files[0].name;
   });
 }
+
+const avatarImg = document.querySelector("#file_input_avatar");
+if (avatarImg) {
+  avatarImg.addEventListener("change", (event) => {
+    const img = document.querySelector("#avatar_src");
+    img.src = URL.createObjectURL(event.target.files[0]);
+  });
+}
