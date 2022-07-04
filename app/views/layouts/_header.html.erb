@@ -20,7 +20,7 @@
           <%= link_to image_tag('/icons/explore.svg', class: "header__container__list__img"), posts_path %>
         </li>
         <li class="header__container__list__item">
-          <%= link_to image_tag('/icons/logout.svg', class: "header__container__list__img"), destroy_user_session_path, method: :delete %>
+          <%= link_to image_tag('/icons/logout.svg', class: "header__container__list__img"), destroy_user_session_path, method: :delete, class: "logout" %>
         </li>
         <li class="header__container__list__item">
           <%= render "help_views/user_avatar_link", user: current_user, class_name: "header__container__list__userAvatar" %>
