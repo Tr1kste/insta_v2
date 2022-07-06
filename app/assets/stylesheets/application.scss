@@ -378,11 +378,15 @@ li {
 .like_non_fill {
   width: 24px;
   height: 24px;
-  background-image: url(/icons/like.svg);
+  background-image: url(../icons/like.svg);
 }
 
 .like_fill {
   width: 24px;
   height: 24px;
-  background-image: url(/icons/like_fill.svg);
+  background-image: url(../icons/like_fill.svg);
+}
+
+.opacity_0 {
+  opacity: 0;
 }

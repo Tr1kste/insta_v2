@@ -95,4 +95,37 @@ RSpec.describe 'User', :js, type: :feature do
             expect(page).to have_content 'Ошибка заполнения. Пожалуйста, проверьте форму.'
         end
     end
+
+    feature 'Follow' do
+        let!(:user) { create(:user) }
+        let!(:second_user) { create(:second_user) }
+
+        scenario 'follow user' do
+            visit root_path
+            sign_in(user)
+            visit(user_path(second_user))
+            click_link "Подписаться"
+            expect(page).to have_content 'Отписаться'
+            expect(page).to have_content '1подписчиков'
+            visit(user_path(user))
+            expect(page).to have_content '1подписок'
+            visit(user_followers_path(second_user))
+            expect(page).to have_content user.username
+            user_followees_path(user)
+            expect(page).to have_content second_user.username
+        end
+
+        scenario 'unfollow user' do
+            visit root_path
+            sign_in(user)
+            visit(user_path(second_user))
+            click_link "Подписаться"
+            expect(page).to have_content 'Отписаться'
+            expect(page).to have_content '1подписчиков'
+            click_link "Отписаться"
+            expect(page).to have_content '0подписчиков'
+            visit(user_path(user))
+            expect(page).to have_content '0подписок'
+        end
+    end
 end

@@ -14,9 +14,13 @@
 
         <div class="home__main__leftColumn_post__icons">
             <% if current_user.liked? post %>
-                <%= link_to "", unlike_post_path(post.id), class: "#{liked_post post}", remote: true, id: "like_#{post.id}" %>
+                <%= link_to unlike_post_path(post.id), class: "#{liked_post post}", remote: true, id: "like_#{post.id}" do %>
+                    <span class="opacity_0">unlike</span>
+                <% end %>
             <% else %>
-                <%= link_to "", like_post_path(post.id), class: "#{liked_post post}", remote: true, id: "like_#{post.id}" %>
+                <%= link_to like_post_path(post.id), class: "#{liked_post post}", remote: true, id: "like_#{post.id}" do %>
+                    <span class="opacity_0">like</span>
+                <% end %>
             <% end %>
 
             <%= image_tag("/icons/Comment.svg") %>
