@@ -277,12 +277,22 @@ li {
   align-items: center;
   gap: 10px;
 
+  .avatar_border {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(45deg, purple, orange);
+    border-radius: 50%;
+    padding: 4px;
+    margin: 0px;
+  }
+
   .avatar {
     width: 32px;
     height: 32px;
     margin: 2px;
     object-fit: cover;
     border-radius: 50%;
+    outline: 4px solid #fff;
   }
 
   .username {
@@ -292,6 +302,7 @@ li {
     font-size: 14px;
     line-height: 18px;
   }
+
   .delete__wrap {
     margin-left: auto;
 
