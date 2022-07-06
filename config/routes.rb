@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
-  get 'home/index'
 
   resources :users, only: %i[show edit update] do
     get 'followers', to: 'follows#followers'
