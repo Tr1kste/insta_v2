@@ -15,3 +15,24 @@ if (avatarImg) {
     img.src = URL.createObjectURL(event.target.files[0]);
   });
 }
+
+const linkArr = document.querySelectorAll(".nav__wrap");
+for (let i = 0; i < linkArr.length; i++) {
+  linkArr[i].addEventListener("click", (event) => {
+    let i, contentArr, links, dataTab;
+
+    dataTab = event.currentTarget.dataset.tab;
+
+    contentArr = document.querySelectorAll(".profile__content");
+    for (i = 0; i < contentArr.length; i++) {
+      contentArr[i].classList.add("d-none");
+    }
+    document.getElementById(dataTab).classList.remove("d-none");
+
+    links = document.querySelectorAll(".nav__wrap");
+    for (i = 0; i < links.length; i++) {
+      links[i].classList.remove("active");
+    }
+    event.currentTarget.classList.add("active");
+  });
+}

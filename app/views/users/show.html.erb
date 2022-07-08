@@ -34,27 +34,43 @@
     </section>
 
     <section class="profile__nav">
-        <div class="nav__wrap active">
+        <a class="nav__wrap active" href="javascript:void(0)" data-tab="posts">
             <%= image_tag('/icons/posts.svg') %>
-            <a href="">Публикации</a>
-        </div>
-        <div class="nav__wrap">
-            <%= image_tag('/icons/Save.svg') %>
-            <a href="">Сохраненное</a>
-        </div>
-        <div class="nav__wrap">
+            <span>Публикации</span>
+        </a>
+        <a class="nav__wrap" href="javascript:void(0)" data-tab="likes">
+            <%= image_tag('/icons/like_fill.svg') %>
+            <span>Понравившиеся</span>
+        </a>
+        <a class="nav__wrap" href="javascript:void(0)" data-tab="tagged">
             <%= image_tag('/icons/Tagged.svg') %>
-            <a href="">Отметки</a>
-        </div>
+            <span>Отметки</span>
+        </a>
     </section>
 
-    <section class="profile__content">
+    <section class="profile__content" id="posts">
         <% @user.posts.order(created_at: :desc).each do |post|%>
             <div class="post__wrap">
                 <div class="post__image"><%= link_to image_tag(post.image), post_path(post)%></div>
                 <%= render "help_views/if_delete", user: @user, post: post, class_name: "post__icons" %>
             </div>
         <% end %>
+    </section>
+
+    <section class="profile__content d-none" id="likes">
+        <% Post.all.order(created_at: :desc).each do |post|%>
+            <% if @user.liked? post %>
+                <div class="post__wrap">
+                    <div class="post__image"><%= link_to image_tag(post.image), post_path(post)%></div>
+                    <%= render "help_views/if_delete", user: @user, post: post, class_name: "post__icons" %>
+                </div>
+            <% end %>
+        <% end %>
+    </section>
+
+    <section class="profile__content d-none" id="tagged">
+        <h2>Paris</h2>
+        <p>Paris is the capital of France.</p>
     </section>
 </main>
 

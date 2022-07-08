@@ -148,7 +148,7 @@
       &.active {
         border-top: 1px solid #262626;
 
-        a {
+        span {
           color: #262626;
         }
       }
@@ -158,7 +158,7 @@
         height: 12px;
       }
 
-      a {
+      span {
         color: #8e8e8e;
         font-size: 12px;
         line-height: 12px;
@@ -175,6 +175,10 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 2%;
+
+    &.d-none {
+      display: none;
+    }
 
     .post__wrap {
       width: 32%;
