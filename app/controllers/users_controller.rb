@@ -2,14 +2,13 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, except: %i[index]
+  before_action :set_user
   before_action :owned_post, only: %i[edit update]
-
-  def index
-    @users = User.order(:name)
+    
+  def show
+    @posts = Post.with_attached_image.includes(:user).order(created_at: :desc)
+    @posts_with_comments = Post.includes([comments: :user])
   end
-
-  def show; end
 
   def edit; end
 

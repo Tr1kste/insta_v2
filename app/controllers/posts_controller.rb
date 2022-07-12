@@ -6,8 +6,7 @@ class PostsController < ApplicationController
   before_action :owned_post, only: %i[edit update destroy]
 
   def index
-    @posts = Post.all.order(created_at: :desc)
-    @users = User.order(:name)
+    @posts = Post.with_attached_image.includes({ user: [avatar_attachment: :blob]}, [comments: :user]).order(created_at: :desc)
   end
 
   def show; end

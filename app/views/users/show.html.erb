@@ -55,28 +55,34 @@
     </section>
 
     <section class="profile__content" id="posts">
-        <% @user.posts.order(created_at: :desc).each do |post|%>
-            <div class="post__wrap">
-                <div class="post__image"><%= link_to image_tag(post.image), post_path(post)%></div>
-                <%= render "help_views/if_delete", user: @user, post: post, class_name: "post__icons" %>
-            </div>
-        <% end %>
-    </section>
-
-    <section class="profile__content d-none" id="likes">
-        <% Post.all.order(created_at: :desc).each do |post|%>
-            <% if @user.liked? post %>
-                <div class="post__wrap">
-                    <div class="post__image"><%= link_to image_tag(post.image), post_path(post)%></div>
-                    <%= render "help_views/if_delete", user: @user, post: post, class_name: "post__icons" %>
-                </div>
+        <% unless @user.posts.blank? %>
+            <% @posts.each do |post|%>
+                <% if post.user.id == @user.id %>
+                    <div class="post__wrap">
+                        <div class="post__image"><%= link_to image_tag(post.image), post_path(post)%></div>
+                        <%= render "help_views/if_delete", user: @user, post: post, class_name: "post__icons" %>
+                    </div>
+                <% end %>
             <% end %>
         <% end %>
     </section>
 
-    <% if @user.id == current_user.id %>
-        <section class="profile__content d-none comments" id="comments">
-            <% Post.all.each do |post| %>
+    <section class="profile__content d-none" id="likes">
+        <% unless @user.votes.blank? %>
+            <% @posts.each do |post|%>
+                <% if @user.liked? post %>
+                    <div class="post__wrap">
+                        <div class="post__image"><%= link_to image_tag(post.image), post_path(post)%></div>
+                        <%= render "help_views/if_delete", user: @user, post: post, class_name: "post__icons" %>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    </section>
+
+    <section class="profile__content d-none comments" id="comments">
+        <% if @user.id == current_user.id and @user.comments.present? %>
+            <% @posts_with_comments.each do |post| %>
                 <% post.comments.each do |comment| %>
                     <% if comment.user.id == current_user.id %>
                         <div class="comment__block">
@@ -90,8 +96,8 @@
                     <% end %>
                 <% end %>
             <% end %>
-        </section>
-    <% end %>
+        <% end %>
+    </section>
 </main>
 
 <%= render "layouts/footer" %>

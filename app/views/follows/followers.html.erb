@@ -1,9 +1,9 @@
 <% title "Подписчики #{@user.username}" %>
 <main class="subs">
     <h1>Подписчики пользователя <%= @user.username %>:</h1>
-        <% if @user.followers.count > 0 %>
+        <% if @followers.count > 0 %>
             <section class="subs__wrap">
-                <% @user.followers.each do |follower| %>
+                <% @followers.each do |follower| %>
                     <div class="subs__item">
                         <% if follower.avatar.attached? %>
                             <%= link_to image_tag(follower.avatar, class: "subs__item__avatar"), user_path(follower) %>

@@ -5,11 +5,11 @@ class FollowsController < ApplicationController
   before_action :set_user
 
   def followers
-    @followers = @user.followers
+    @followers = @user.followers.with_attached_avatar
   end
 
   def followees
-    @followees = @user.followees
+    @followees = @user.followees.with_attached_avatar
   end
 
   private
