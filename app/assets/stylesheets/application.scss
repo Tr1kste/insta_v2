@@ -12,6 +12,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  transition: 0.3s ease-in;
 }
 
 *:focus {
@@ -391,6 +392,10 @@ li {
   width: 24px;
   height: 24px;
   background-image: url(../icons/like.svg);
+
+  &:hover {
+    background-image: url(../icons/like_fill.svg);
+  }
 }
 
 .like_fill {

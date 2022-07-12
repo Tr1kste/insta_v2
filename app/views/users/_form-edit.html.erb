@@ -78,8 +78,8 @@
             </div>
 
             <div class="form__item">
-                <div class="line__wrap"><%= f.label :gender, "Пол", class: 'label' %></div>
-                <%= f.text_field :gender, class: 'input--text edit--form' %>
+                <div class="line__wrap"><%= f.label :gender, "Пол", class: 'label' %></div> 
+                <%= f.select :gender, options_for_select(["", "Мужской", "Женский"], f.object.gender || default_value)%>
             </div>
 
             <div class="form__item">

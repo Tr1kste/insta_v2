@@ -145,6 +145,14 @@
       min-height: 54px;
       margin-top: -1px;
 
+      &:hover {
+        border-top: 1px solid #262626;
+
+        span {
+          color: #262626;
+        }
+      }
+
       &.active {
         border-top: 1px solid #262626;
 
@@ -350,6 +358,18 @@
             line-height: 18px;
             margin-bottom: 3px;
           }
+        }
+
+        select {
+          height: 32px;
+          background: #fff;
+          width: 355px;
+          border-radius: 3px;
+          font-size: 16px;
+          font-family: inherit;
+          color: #262626;
+          border: 1px solid #dbdbdb;
+          padding: 0 10px;
         }
       }
     }
