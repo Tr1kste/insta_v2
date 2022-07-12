@@ -42,9 +42,9 @@
             <%= image_tag('/icons/like_fill.svg') %>
             <span>Понравившиеся</span>
         </a>
-        <a class="nav__wrap" href="javascript:void(0)" data-tab="tagged">
-            <%= image_tag('/icons/Tagged.svg') %>
-            <span>Отметки</span>
+        <a class="nav__wrap" href="javascript:void(0)" data-tab="comments">
+            <%= image_tag('/icons/Comment.svg') %>
+            <span>Комментарии</span>
         </a>
     </section>
 
@@ -68,9 +68,21 @@
         <% end %>
     </section>
 
-    <section class="profile__content d-none" id="tagged">
-        <h2>Paris</h2>
-        <p>Paris is the capital of France.</p>
+    <section class="profile__content d-none comments" id="comments">
+        <% Post.all.each do |post| %>
+            <% post.comments.each do |comment| %>
+                <% if comment.user.id == current_user.id %>
+                    <div class="comment__block">
+                        <div class="">
+                            <%= link_to image_tag(post.image, class: "comment__image-post"), post_path(post)%>
+                        </div>
+                        <div class="comment__content">
+                            <%= "\" #{comment.content} \"" %>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
     </section>
 </main>
 

@@ -33,10 +33,13 @@
     .newPost__leftColumn__p {
       font-size: 22px;
       font-weight: 300;
-      line-height: 26px;
+      line-height: 50px;
       color: #262626;
       text-align: center;
       margin: 0;
+      overflow: hidden;
+      max-width: 95%;
+      text-overflow: ellipsis;
     }
   }
 

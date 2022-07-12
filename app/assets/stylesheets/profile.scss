@@ -176,6 +176,12 @@
     align-items: center;
     gap: 2%;
 
+    &.comments {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+    }
+
     &.d-none {
       display: none;
     }
@@ -197,6 +203,8 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
         }
       }
 
@@ -345,6 +353,27 @@
         }
       }
     }
+  }
+}
+
+.comment__block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3vw;
+  max-width: 450px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  .comment__image-post {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  .comment__content {
+    text-align: justify;
+    font-style: italic;
   }
 }
 
