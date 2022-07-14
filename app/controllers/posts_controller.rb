@@ -6,8 +6,15 @@ class PostsController < ApplicationController
   before_action :owned_post, only: %i[edit update destroy]
 
   def index
-    @posts = Post.with_attached_image.includes({ user: [avatar_attachment: :blob] },
-                                               [comments: :user]).order(created_at: :desc)
+    @posts = Post.with_attached_image
+                 .includes({ user: [avatar_attachment: :blob] },[comments: :user])
+                 .order(created_at: :desc)
+                 .page params[:page]
+    
+    respond_to do |format|
+      format.html
+      format.js { render 'posts/paginate.js.erb'}
+    end
   end
 
   def show; end

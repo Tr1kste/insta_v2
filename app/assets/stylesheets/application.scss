@@ -403,3 +403,30 @@ li {
 .opacity_0 {
   opacity: 0;
 }
+
+#paginate {
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+  margin: 20px 0;
+
+  .pagination {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    padding: 15px;
+  }
+
+  a {
+    color: #0095f6;
+
+    &:hover {
+      color: #6b00f6;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+if(document.querySelector("#paginate")){
+    document.querySelector("#home_posts").innerHTML = "<%=j render @posts %>";
+    document.querySelector("#paginate").innerHTML = "<%=j (paginate @posts, remote: true)%>"
+    window.scrollTo(0, 0)
+}
