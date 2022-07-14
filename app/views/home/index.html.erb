@@ -6,9 +6,11 @@
     <div id="home_posts">
       <%= render @posts %>
     </div>
-    <div id="paginate">
-      <%= paginate @posts, remote: true %>
-    </div>
+    <% if @posts.total_pages > 1%>
+      <div id="paginate">
+        <%= paginate @posts, remote: true %>
+      </div>
+    <% end %>
   </section>
 
   <section class="home__main__rightColumn">
