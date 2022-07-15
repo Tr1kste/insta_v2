@@ -16,6 +16,8 @@ gem 'acts_as_votable', '~> 0.13.2'
 
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
+gem 'simplecov', require: false, group: :test
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6'
 # Use sqlite3 as the database for Active Record
