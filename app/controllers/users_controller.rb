@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
   before_action :owned_post, only: %i[edit update]
-    
+
   def show
     @posts = Post.with_attached_image.includes(:user).order(created_at: :desc)
     @posts_with_comments = Post.includes([comments: :user])
