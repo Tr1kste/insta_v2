@@ -3,16 +3,18 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
-  before_action :owned_post, only: %i[edit update]
 
   def show
     @posts = Post.with_attached_image.includes(:user).order(created_at: :desc)
     @posts_with_comments = Post.includes([comments: :user])
   end
 
-  def edit; end
+  def edit
+    authorize @user
+  end
 
   def update
+    authorize @user
     if @user.update(user_params)
       flash[:success] = 'Данные обновлены.'
       redirect_to current_user
@@ -49,12 +51,5 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def owned_post
-    unless current_user == @user
-      flash[:alert] = 'Недостаточно прав для данного действия!'
-      redirect_back fallback_location: root_path
-    end
   end
 end

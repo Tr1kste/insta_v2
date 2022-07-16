@@ -3,7 +3,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy like unlike]
-  before_action :owned_post, only: %i[edit update destroy]
 
   def index
     @posts = Post.with_attached_image
@@ -35,9 +34,13 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    authorize @post
+  end
 
   def update
+    authorize @post
+
     if @post.update(post_params)
       flash[:success] = 'Пост обновлен.'
       redirect_to post_path(@post)
@@ -48,6 +51,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize @post
+
     if @post.destroy
       flash[:success] = 'Пост удален.'
     else
@@ -80,12 +85,5 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def owned_post
-    unless current_user == @post.user
-      flash[:alert] = 'Недостаточно прав для данного действия!'
-      redirect_back fallback_location: root_path
-    end
   end
 end

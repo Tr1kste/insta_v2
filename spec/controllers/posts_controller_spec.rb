@@ -12,8 +12,6 @@ RSpec.describe PostsController, type: :controller do
     it { should use_before_action(:authenticate_user!) }
 
     it { should use_before_action(:set_post) }
-
-    it { should use_before_action(:owned_post) }
   end
 
   describe '#index' do

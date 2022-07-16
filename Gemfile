@@ -9,6 +9,7 @@ gem 'acts_as_votable', '~> 0.13.2'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'pg', '~> 1.3', '>= 1.3.5'
+gem 'pundit', '~> 2.2'
 
 gem 'rubocop', '~> 1.30', '>= 1.30.1'
 gem 'rubocop-performance', '~> 1.14', '>= 1.14.2'
