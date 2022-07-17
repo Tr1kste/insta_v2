@@ -12,7 +12,7 @@
         <div class="profile__header__info">
             <div class="info__1st__line">
                 <h2 class="info__h2"><%= @user.username %></h2>
-                <% if @user.id == current_user.id %>
+                <% if policy(@user).edit? %>
                     <%= link_to "Редактировать профиль", edit_user_path(current_user), class: "info__linkEdit" %>
                     <%= link_to image_tag('/icons/edit.svg', class: "info__iconEdit"), edit_user_path(current_user) %>
                 <% else %>
@@ -81,7 +81,7 @@
     </section>
 
     <section class="profile__content d-none comments" id="comments">
-        <% if @user.id == current_user.id and @user.comments.present? %>
+        <% if policy(@user).edit? and @user.comments.present? %>
             <% @posts_with_comments.each do |post| %>
                 <% post.comments.each do |comment| %>
                     <% if comment.user.id == current_user.id %>

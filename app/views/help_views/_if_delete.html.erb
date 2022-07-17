@@ -1,4 +1,4 @@
-<% if post.user.id == current_user.id %>
+<% if policy(post).edit? %>
     <div class="<%= class_name %>">
         <%= link_to image_tag('/icons/edit_post.svg', id: 'edit_link_id'), edit_post_path(post)%>
         <%= link_to image_tag('/icons/delete.svg', id: 'delete_link_id'), post_path(post), method: :delete, data: { confirm: "Вы уверены, что хотите удалить пост?" } %>
