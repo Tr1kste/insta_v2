@@ -39,16 +39,16 @@
 
     <section class="profile__nav">
         <a class="nav__wrap active" href="javascript:void(0)" data-tab="posts">
-            <%= image_tag('/icons/posts.svg') %>
+            <%= image_tag(image_path('icons/posts.svg')) %>
             <span>Публикации</span>
         </a>
         <a class="nav__wrap" href="javascript:void(0)" data-tab="likes">
-            <%= image_tag('/icons/like_fill.svg') %>
+            <%= image_tag(image_path('icons/like_fill.svg')) %>
             <span>Понравившиеся</span>
         </a>
         <% if @user.id == current_user.id %>
             <a class="nav__wrap" href="javascript:void(0)" data-tab="comments">
-                <%= image_tag('/icons/Comment.svg') %>
+                <%= image_tag(image_path('icons/Comment.svg')) %>
                 <span>Комментарии</span>
             </a>
         <% end %>
