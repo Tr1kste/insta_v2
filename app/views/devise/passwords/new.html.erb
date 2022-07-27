@@ -8,7 +8,7 @@
         Забыли пароль? Восстановите через форму ниже
       </h2>
 
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { data: {turbo_method: :post} }) do |f| %>
         <div class="auth__rightColumn__block__form">
           <%= render "devise/shared/error_messages", resource: resource %>
 

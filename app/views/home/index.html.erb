@@ -44,7 +44,7 @@
                               <% if user.name %><p class="home__main__rightColumn__recUser__name__textName"><%= user.name %></p><% end %>
                           </div>
                       </div>
-                      <%= link_to "Подписаться", follow_user_path(user), id:"follow_link_#{user.id}", method: :post, remote: true, class: "submit--text user" %>
+                      <%= link_to "Подписаться", follow_user_path(user), id:"follow_link_#{user.id}", data: { turbo_method: :post }, class: "submit--text user" %>
                   </div>
               <% @count_users += 1 %>
               <% end %>

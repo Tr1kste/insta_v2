@@ -17,9 +17,9 @@
                     <%= link_to image_tag(image_path('icons/edit.svg'), class: "info__iconEdit"), edit_user_path(current_user) %>
                 <% else %>
                     <% if current_user.followees.include?(@user) %>
-                        <%= link_to "Отписаться", unfollow_user_path, method: :post, remote: true, id: "unfollow_link", class: "info__unfollow" %>
+                        <%= link_to "Отписаться", unfollow_user_path, data: {turbo_method: :post}, id: "unfollow_link", class: "info__unfollow" %>
                     <% else %>
-                        <%= link_to "Подписаться", follow_user_path, method: :post, remote: true, id: "follow_link", class: "info__follow" %>
+                        <%= link_to "Подписаться", follow_user_path, data: {turbo_method: :post}, id: "follow_link", class: "info__follow" %>
                     <% end %>
                 <% end %>
             </div>

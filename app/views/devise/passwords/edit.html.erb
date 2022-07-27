@@ -8,7 +8,7 @@
         Придумайте новый пароль
       </h2>
 
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { data: {turbo_method: :put} }) do |f| %>
         <div class="auth__rightColumn__block__form">
           <%= render "devise/shared/error_messages", resource: resource %>
           <%= f.hidden_field :reset_password_token %>
