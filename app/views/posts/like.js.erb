@@ -1,0 +1,6 @@
+document.querySelector("#like_<%= @post.id %>").classList.remove("like_non_fill");
+document.querySelector("#like_<%= @post.id %>").classList.add("like_fill");
+
+document.querySelector("#like_<%= @post.id %>").href = "/posts/<%= @post.id %>/unlike"
+
+document.querySelector("#likes_<%= @post.id %>").innerHTML = '<%= display_likes @post %>';

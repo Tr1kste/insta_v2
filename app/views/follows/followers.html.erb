@@ -1,0 +1,27 @@
+<% title "Подписчики #{@user.username}" %>
+<main class="subs">
+    <h1>Подписчики пользователя <%= @user.username %>:</h1>
+        <% if @followers.count > 0 %>
+            <section class="subs__wrap">
+                <% @followers.each do |follower| %>
+                    <div class="subs__item">
+                        <% if follower.avatar.attached? %>
+                            <%= link_to image_tag(follower.avatar, class: "subs__item__avatar"), user_path(follower) %>
+                        <% else %>
+                            <%= link_to image_tag(image_path('icons/profile.svg'), class: "subs__item__avatar"), user_path(follower) %>
+                        <% end %>
+
+                        <div class="subs__item__info">
+                            <%= link_to follower.username, user_path(follower), class: "subs__item__username" %>
+                            <p class="subs__item__description"><%= @user.name %></p>
+                        </div>
+                    </div>
+                <% end %>
+            </section>
+        <% else %>
+            <div class="subs__friend">У <%= @user.id == current_user.id ? "Вас" : @user.username %> нет подписчиков. 
+            <%= "Найдите друзей :)" if @user.id == current_user.id %></div>
+        <% end %>
+</main>
+
+<%= render "layouts/footer" %>

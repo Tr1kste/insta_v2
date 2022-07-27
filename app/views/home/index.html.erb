@@ -1,0 +1,88 @@
+<main class="home__main">
+  <section class="home__main__leftColumn">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: [:home_message, :alert, alert_for(name)] %>
+    <% end %>
+    <div id="home_posts">
+      <%= render @posts %>
+    </div>
+    <% if @posts.total_pages > 1%>
+      <div id="paginate">
+        <%= paginate @posts, remote: true %>
+      </div>
+    <% end %>
+  </section>
+
+  <section class="home__main__rightColumn">
+    <div class="home__main__rightColumn_sticky">
+
+      <div class="home__main__rightColumn__user">
+        <div class="home__main__rightColumn__user_wrap">
+          <%= render "help_views/user_avatar_link", user: current_user, class_name: "home__main__rightColumn__user__avatar" %>
+          <div class="home__main__rightColumn__user__name">
+            <%= link_to current_user.username, user_path(current_user), class: "home__main__rightColumn__user__name__textUser" %>
+            <p class="home__main__rightColumn__user__name__textName"><%= current_user.name %></p>
+          </div>
+        </div>
+        <%= link_to "Переключиться", destroy_user_session_path, data: { turbo_method: :delete }, class: "submit--text user" %>
+      </div>
+
+      <div class="home__main__rightColumn__text">
+        <p class="home__main__rightColumn__text__p">Рекомендации для Вас</p>
+      </div>
+
+      <div class="home__main__rightColumn__recUser_container">
+        <% unless current_user.followees.size == (@users.size - 1) %>
+          <% @count_users = 0 %>
+          <% @users.with_attached_avatar.each do |user| %>
+              <% if user != current_user and current_user.followees.exclude?(user) and @count_users < 5 %>
+                  <div class="home__main__rightColumn__recUser">
+                      <div class="home__main__rightColumn__recUser_wrap">
+                          <%= render "help_views/user_avatar_link", user: user, class_name: "home__main__rightColumn__recUser__avatar" %>
+                          <div class="home__main__rightColumn__recUser__name">
+                              <%= link_to user.username, user_path(user), class: 'home__main__rightColumn__recUser__name__textUser' %>
+                              <% if user.name %><p class="home__main__rightColumn__recUser__name__textName"><%= user.name %></p><% end %>
+                          </div>
+                      </div>
+                      <%= link_to "Подписаться", follow_user_path(user), id:"follow_link_#{user.id}", method: :post, remote: true, class: "submit--text user" %>
+                  </div>
+              <% @count_users += 1 %>
+              <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <ul class="home__main__rightColumn__links">
+        <li class="home__main__rightColumn__links__item">
+          <a href="javascript:void(0)">Информация</a>
+        </li>
+        <li class="home__main__rightColumn__links__item">
+          <a href="javascript:void(0)">Помощь</a>
+        </li>
+        <li class="home__main__rightColumn__links__item">
+          <a href="javascript:void(0)">Пресса</a>
+        </li>
+        <li class="home__main__rightColumn__links__item">
+          <a href="javascript:void(0)">API</a>
+        </li>
+        <li class="home__main__rightColumn__links__item">
+          <a href="javascript:void(0)">Вакансии</a>
+        </li>
+        <li class="home__main__rightColumn__links__item">
+          <a href="javascript:void(0)">Конфиденциальность</a>
+        </li>
+        <li class="home__main__rightColumn__links__item">
+          <a href="javascript:void(0)">Условия</a>
+        </li>
+        <li class="home__main__rightColumn__links__item">
+          <a href="javascript:void(0)">Места</a>
+        </li>
+        <li class="home__main__rightColumn__links__item">
+          <a href="javascript:void(0)">Язык</a>
+        </li>
+      </ul>
+
+      <p class="home__main__rightColumn__copy">© 2022 COPY INSTAGRAM FROM KUL1CHIK</p>
+    </div>
+  </section>
+</main>

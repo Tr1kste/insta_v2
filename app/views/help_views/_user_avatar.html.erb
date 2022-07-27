@@ -1,0 +1,5 @@
+<% if user.avatar.attached? %>
+    <%= image_tag user.avatar, class: class_name %>
+<% else %>
+    <%= image_tag image_path('icons/profile.svg'), class: class_name %>
+<% end %>

@@ -1,0 +1,91 @@
+<section class="edit__form">
+    <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: [:edit_profile, :alert, alert_for(name)] %>
+    <% end %>
+
+    <%= form_with model: current_user, local: true do |f| %>
+        <div class="form__head">
+            <div class="line__wrap">
+                <% if current_user.avatar.attached? %>
+                    <%= image_tag current_user.avatar, class: "head__avatar", id: "avatar_src" %>
+                <% else %>
+                    <%= image_tag image_path('icons/profile.svg'), class: "head__avatar", id: "avatar_src" %>
+                <% end %>
+            </div>
+
+            <div class="form__head__wrap">
+                <p class="head__name"><%=current_user.username %></p>
+                <div class="newPost__leftColumn__fileInput">
+                    <%= f.file_field :avatar, class: "input--file", id: "file_input_avatar" %>
+                    <label class="input--file--label--line" for="file_input_avatar">Изменить фото профиля</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form__main">
+            <div class="form__item">
+                <div class="line__wrap"><%= f.label :name, "Имя", class: 'label' %></div>
+                <%= f.text_field :name, class: 'input--text edit--form' %>
+            </div>
+
+            <div class="form__item">
+                <div class="line__wrap"></div>
+                <p class="edit__describe">
+                    Чтобы людям было проще находить ваш аккаунт, используйте имя, под
+                    которым вас знают: ваше имя и фамилию, никнейм или название
+                    компании.
+                    <br /><br />
+                    Изменить имя можно не более двух раз в течение 14 дней.
+                </p>
+            </div>
+
+            <div class="form__item">
+                <div class="line__wrap"><%= f.label :username, "Имя пользователя", class: 'label' %></div>
+                <%= f.text_field :username, class: 'input--text edit--form' %>
+            </div>
+
+            <div class="form__item">
+                <div class="line__wrap"></div>
+                <p class="edit__describe">
+                    В большинстве случаев у вас будет ещё 14 дней, чтобы снова
+                    изменить имя пользователя.
+                </p>
+            </div>
+
+            <div class="form__item">
+                <div class="line__wrap"><%= f.label :website, "Веб-сайт", class: 'label' %></div>
+                <%= f.url_field :website, class: 'input--text edit--form' %>
+            </div>
+
+            <div class="form__item">
+                <div class="line__wrap"><%= f.label :bio, "О себе", class: 'label' %></div>
+                <%= f.text_area :bio, size: "0x3", class: "textarea--edit" %>
+            </div>
+
+            <div class="form__item pad">
+                <div class="line__wrap"></div>
+                <p class="edit__describe">
+                    <span>Личная информация</span><br />
+                    Укажите личную информацию, даже если аккаунт будет использоваться
+                    для компании, домашнего животного или в других целях. Эти сведения
+                    не будут показываться в вашем общедоступном профиле.
+                </p>
+            </div>
+
+            <div class="form__item">
+                <div class="line__wrap"><%= f.label :phone, "Номер телефона", class: 'label' %></div>
+                <%= f.telephone_field :phone, class: 'input--text edit--form' %>
+            </div>
+
+            <div class="form__item">
+                <div class="line__wrap"><%= f.label :gender, "Пол", class: 'label' %></div> 
+                <%= f.select :gender, options_for_select(["", "Мужской", "Женский"], f.object.gender)%>
+            </div>
+
+            <div class="form__item">
+                <div class="line__wrap"></div>
+                <%= f.submit "Отправить", class: 'input--submit edit--form' %>
+            </div>
+        </div>
+    <% end %>
+</section>

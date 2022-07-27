@@ -1,0 +1,7 @@
+<% if policy(post).edit? %>
+    <div class="<%= class_name %>">
+        <%= link_to image_tag(image_path('icons/edit_post.svg'), id: 'edit_link_id'), edit_post_path(post)%>
+        <%= link_to image_tag(image_path('icons/delete.svg'), id: 'delete_link_id'), post_path(post),
+        data: { turbo_method: :delete, turbo_confirm: 'Вы уверены, что хотите удалить пост?' } %>
+    </div>
+<% end %>

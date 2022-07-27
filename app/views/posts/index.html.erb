@@ -1,0 +1,15 @@
+<main class="home__main">
+  <section class="home__main__leftColumn">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: [:home_message, :alert, alert_for(name)] %>
+    <% end %>
+    <div id="home_posts">
+      <%= render @posts %>
+    </div>
+    <% if @posts.total_pages > 1%>
+      <div id="paginate">
+        <%= paginate @posts, remote: true %>
+      </div>
+    <% end %>
+  </section>
+</main>

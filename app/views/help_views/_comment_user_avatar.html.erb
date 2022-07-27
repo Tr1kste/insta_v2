@@ -1,0 +1,5 @@
+<% if comment.user.avatar.attached? %>
+    <%= link_to image_tag(comment.user.avatar, class: class_name), user_path(comment.user) %>
+<% else %>
+    <%= link_to image_tag(image_path('icons/profile.svg'), class: class_name), user_path(comment.user) %>
+<% end %>

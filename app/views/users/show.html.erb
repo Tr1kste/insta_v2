@@ -1,0 +1,103 @@
+<% title "Пользователь #{@user.username}" %>
+<main class="profile__main">
+    <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: [:home_message, :alert, alert_for(name)] %>
+    <% end %>
+
+    <section class="profile__header">
+        <div class="profile__header__avatar">
+            <%= render "help_views/user_avatar", user: @user, class_name: "profile__header__avatar_img" %>
+        </div>
+
+        <div class="profile__header__info">
+            <div class="info__1st__line">
+                <h2 class="info__h2"><%= @user.username %></h2>
+                <% if policy(@user).edit? %>
+                    <%= link_to "Редактировать профиль", edit_user_path(current_user), class: "info__linkEdit" %>
+                    <%= link_to image_tag(image_path('icons/edit.svg'), class: "info__iconEdit"), edit_user_path(current_user) %>
+                <% else %>
+                    <% if current_user.followees.include?(@user) %>
+                        <%= link_to "Отписаться", unfollow_user_path, method: :post, remote: true, id: "unfollow_link", class: "info__unfollow" %>
+                    <% else %>
+                        <%= link_to "Подписаться", follow_user_path, method: :post, remote: true, id: "follow_link", class: "info__follow" %>
+                    <% end %>
+                <% end %>
+            </div>
+
+            <div class="info__2nd__line">
+                <p class="info__a"><span><%= @user.posts.count %></span>публикаций</p>
+                <div id="follow_block"><%= render "users/follow_block", user: @user %></div>
+            </div>
+
+            <div class="info__3rd__line">
+                <p class="info__a bold"><%= @user.name %></p>
+                <% if @user.website.present? %><%= link_to @user.website, @user.website%><% end %>
+                <p class="info__a desc"><%= @user.bio %></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile__nav">
+        <a class="nav__wrap active" href="javascript:void(0)" data-tab="posts">
+            <%= image_tag('/icons/posts.svg') %>
+            <span>Публикации</span>
+        </a>
+        <a class="nav__wrap" href="javascript:void(0)" data-tab="likes">
+            <%= image_tag('/icons/like_fill.svg') %>
+            <span>Понравившиеся</span>
+        </a>
+        <% if @user.id == current_user.id %>
+            <a class="nav__wrap" href="javascript:void(0)" data-tab="comments">
+                <%= image_tag('/icons/Comment.svg') %>
+                <span>Комментарии</span>
+            </a>
+        <% end %>
+    </section>
+
+    <section class="profile__content" id="posts">
+        <% unless @user.posts.blank? %>
+            <% @posts.each do |post|%>
+                <% if post.user.id == @user.id %>
+                    <div class="post__wrap">
+                        <div class="post__image"><%= link_to image_tag(post.image), post_path(post)%></div>
+                        <%= render "help_views/if_delete", user: @user, post: post, class_name: "post__icons" %>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    </section>
+
+    <section class="profile__content d-none" id="likes">
+        <% unless @user.votes.blank? %>
+            <% @posts.each do |post|%>
+                <% if @user.liked? post %>
+                    <div class="post__wrap">
+                        <div class="post__image"><%= link_to image_tag(post.image), post_path(post)%></div>
+                        <%= render "help_views/if_delete", user: @user, post: post, class_name: "post__icons" %>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    </section>
+
+    <section class="profile__content d-none comments" id="comments">
+        <% if policy(@user).edit? and @user.comments.present? %>
+            <% @posts_with_comments.each do |post| %>
+                <% post.comments.each do |comment| %>
+                    <% if comment.user.id == current_user.id %>
+                        <div class="comment__block">
+                            <div class="">
+                                <%= link_to image_tag(post.image, class: "comment__image-post"), post_path(post)%>
+                            </div>
+                            <div class="comment__content">
+                                <%= "\" #{comment.content} \"" %>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+            <% end %>
+        <% end %>
+    </section>
+</main>
+
+<%= render "layouts/footer" %>

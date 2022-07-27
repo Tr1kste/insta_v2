@@ -1,0 +1,3 @@
+if(document.querySelector("#comments_<%= @post.id %>")){
+    document.querySelector("#comments_<%= @post.id %>").innerHTML = "<%=j render @post.comments, post: @post, comment: @comment %>";
+}

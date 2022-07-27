@@ -1,0 +1,9 @@
+<div class="comments_item">
+    <%= link_to comment.user.username, user_path(comment.user)%>
+    <span><%= comment.content %></span>
+    <% if comment.user == current_user %>
+        <%= link_to image_tag(image_path('icons/delete_comment.svg'), class: "delete__img"),
+        post_comment_path(post, comment), class: 'delete__wrap',
+        data: { turbo_method: :delete, turbo_confirm: 'Вы уверены, что хотите удалить комментарий?' } %>
+    <% end %>
+</div>

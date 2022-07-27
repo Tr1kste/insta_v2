@@ -1,0 +1,6 @@
+<%= link_to user_followers_path(user), class: "info__a" do %>
+    <span><%= user.followers.count %></span>подписчиков
+<% end %>
+<%= link_to user_followees_path(user), class: "info__a" do %>
+    <span><%= user.followees.count %></span>подписок
+<% end %>

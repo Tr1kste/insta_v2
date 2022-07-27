@@ -1,0 +1,16 @@
+<main class="profile__edit">
+    <section class="edit__nav">
+        <ul class="edit__menu">
+            <li class="menu__item">
+                <%= link_to "Редактировать профиль", edit_user_path(current_user), class: "item__link" %>
+            </li>
+            <li class="menu__item active">
+                <%= link_to "Сменить данные аккаунта", edit_user_registration_path, class: "item__link active" %>
+            </li>
+        </ul>
+    </section>
+
+    <%= render "users/form-change-pass" %>
+</main>
+
+<%= render "layouts/footer" %>

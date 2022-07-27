@@ -1,0 +1,46 @@
+<% title "Редактирование #{current_user.username}" %>
+<section class="edit__form">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    
+    <div class="form__head">
+        <div class="line__wrap">
+            <%= render "help_views/user_avatar", user: current_user, class_name: "head__avatar" %>
+        </div>
+        <div class="form__head__wrap">
+            <p class="head__name"><%=current_user.username %></p>
+        </div>
+    </div>
+
+    <div class="form__main">
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :email, "Эл. адрес", class: 'label' %></div>
+            <%= f.email_field :email, class: 'input--text change--pass' %>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :current_password, "Старый пароль", class: 'label' %> </div>
+            <%= f.password_field :current_password, autocomplete: "current-password", class: 'input--text change--pass' %>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :password, "Новый пароль", class: 'label' %> </div>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'input--text change--pass' %>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"><%= f.label :password_confirmation, "Подтвердите новый пароль", class: 'label' %> </div>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input--text change--pass' %>
+        </div>
+
+        <div class="form__item">
+            <div class="line__wrap"></div>
+            <%= f.submit "Изменить данные", class: 'input--submit edit--form' %>
+        </div>
+    <% end %>
+        <div class="form__item">
+            <div class="line__wrap"></div>
+            <%= link_to "Удалить аккаунт", registration_path(resource_name), data: { turbo_method: :delete, turbo_confirm: 'Вы уверены, что хотите удалить аккаунт?' }, class: 'input--submit delete--button' %>
+        </div>
+    </div>
+</section>

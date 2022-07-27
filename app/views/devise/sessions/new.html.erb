@@ -1,0 +1,35 @@
+<% title "Вход" %>
+<main class="auth__main__container">
+  <%= image_tag(image_path('img/auth_insta.png'), class: "auth__leftColumn__img") %>
+
+  <section class="auth__rightColumn">
+    <div class="auth__rightColumn__block">
+      <%= image_tag(image_path('img/logo.png'), class: "auth__rightColumn__block__logo") %>
+
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: [:log_in, :alert, alert_for(name)] %>
+      <% end %>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        
+        <div class="auth__rightColumn__block__form">
+          
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "input--email" %>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Пароль", class: "input--password" %>
+          <%= f.submit "Войти", class: "input--submit" %>
+
+          <%= link_to "Забыли пароль?", new_password_path(resource_name), class:"forgot__password__link" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="auth__rightColumn__block__reg">
+      <p class="auth__rightColumn__block__reg__text">
+        У вас еще нет аккаунта?
+        <%= link_to "Зарегистрироваться", new_registration_path(resource_name), class: "auth__rightColumn__block__reg__link" %>
+      </p>
+    </div>
+  </section>
+</main>
+
+<%= render "layouts/footer" %>

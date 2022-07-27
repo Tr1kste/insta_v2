@@ -1,0 +1,58 @@
+<% title "Пост #{@post.id}" %>
+<main class="post__show">
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: [:home_message, :alert, alert_for(name)] %>
+  <% end %>
+
+  <section class="post__wrap">
+    <div class="post__image"><%= image_tag @post.image %></div>
+    <div class="post__data">
+      <div class="data__head">
+        <div class="username-and-avatar">
+          <%= render "help_views/post_user_avatar", user: @user, post: @post, class_name: "avatar" %>
+          <%= link_to @post.user.username, user_path(@post.user), class: "username" %>
+        </div>
+        <%= render "help_views/if_delete", user: @user, post: @post, class_name: "data__head__icons" %>
+      </div>
+
+      <div class="data__comments">
+        <div class="username-and-avatar comment">
+          <%= render "help_views/post_user_avatar", user: @user, post: @post, class_name: "avatar" %>
+          <%= link_to @post.user.username, user_path(@post.user), class: "username" %>
+          <span><%= @post.description %></span>
+        </div>
+
+        <div class="comments__area full" id="comments_<%= @post.id %>">
+          <%= render @post.comments.includes(:user), post: @post %>
+        </div>
+      </div>
+      
+      <div class="data__icons">
+        <% if current_user.liked? @post %>
+            <%= link_to "", unlike_post_path(@post.id), class: "#{liked_post @post}", remote: true, id: "like_#{@post.id}" %>
+        <% else %>
+            <%= link_to "", like_post_path(@post.id), class: "#{liked_post @post}", remote: true, id: "like_#{@post.id}" %>
+        <% end %>
+
+        <%= image_tag image_path("icons/Comment.svg") %>
+        <%= image_tag image_path("icons/SharePosts.svg") %>
+      </div>
+
+      <%= render 'posts/likes', post: @post, class_name: "data__likes" %>
+
+      <div class="data__created">
+        <time datetime="<%= @post.formatted_created_at %>">
+          <%= @post.formatted_created_at %>
+        </time>
+      </div>
+
+      <%= form_for [@post, @post.comments.new], remote: true, :html => {:class => 'data__addComment'} do |f| %>
+        <%= image_tag(image_path("icons/Emoji.svg"), class: "emoji") %>
+        <%= f.text_area :content, class: 'textarea post', id: "comment_content_#{@post.id}", rows: "1", placeholder: "Добавьте комментарий..." %>
+        <%= f.submit "Опубликовать", class: 'submit--text user' %>
+      <% end %>
+    </div>
+  </section>
+</main>
+
+<%= render "layouts/footer" %>
