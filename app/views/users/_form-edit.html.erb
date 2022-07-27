@@ -4,23 +4,23 @@
     <% end %>
 
     <%= form_with model: current_user, local: true do |f| %>
-        <div class="form__head">
+        <%= tag.div class:"form__head", data: {controller: 'image'} do %>
             <div class="line__wrap">
                 <% if current_user.avatar.attached? %>
-                    <%= image_tag current_user.avatar, class: "head__avatar", id: "avatar_src" %>
+                    <%= image_tag current_user.avatar, data: {'image-target': 'outputImg'}, class: "head__avatar", id: "avatar_src" %>
                 <% else %>
-                    <%= image_tag image_path('icons/profile.svg'), class: "head__avatar", id: "avatar_src" %>
+                    <%= image_tag image_path('icons/profile.svg'), data: {'image-target': 'outputImg'}, class: "head__avatar", id: "avatar_src" %>
                 <% end %>
             </div>
 
             <div class="form__head__wrap">
                 <p class="head__name"><%=current_user.username %></p>
                 <div class="newPost__leftColumn__fileInput">
-                    <%= f.file_field :avatar, class: "input--file", id: "file_input_avatar" %>
+                    <%= f.file_field :avatar, data: {'image-target': 'input', 'action': 'image#fileInputAvatar'}, class: "input--file", id: "file_input_avatar" %>
                     <label class="input--file--label--line" for="file_input_avatar">Изменить фото профиля</label>
                 </div>
             </div>
-        </div>
+        <% end %>
 
         <div class="form__main">
             <div class="form__item">

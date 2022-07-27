@@ -69,6 +69,13 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'ffaker', '~> 2.21'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 5.1.2'
+  gem 'shoulda-matchers', '~> 5.1'
+  gem 'simplecov', require: false
 end
 
 gem "devise", "~> 4.8"
